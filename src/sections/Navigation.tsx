@@ -30,7 +30,12 @@ export default function Navigation() {
       </a>
 
       <div className="hidden lg:flex items-center gap-10">
-        <a href="#product" className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]">
+        <a
+          href="https://pulse.pipelineom.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]"
+        >
           Pulse
         </a>
         <a href="#how" className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]">
