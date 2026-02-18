@@ -84,16 +84,22 @@ After this, each form submission will add a new row in your sheet with timestamp
 1. **Script must be bound to the sheet**  
    Open the **Google Sheet** where you want rows to appear, then use **Extensions → Apps Script**. If you created the script from a different place, the “active” spreadsheet may be wrong. Create a new sheet, add the header row, then **Extensions → Apps Script** and paste the script there. Redeploy and use the **new** web app URL in Vercel.
 
-2. **Environment variable on Vercel**  
-   In Vercel: Project → **Settings → Environment Variables**. Ensure `GOOGLE_SHEETS_WEB_APP_URL` is set to the full web app URL (e.g. `https://script.google.com/macros/s/xxxx/exec`). After changing it, **redeploy** the project (Deployments → ⋮ on latest → Redeploy).
+2. **Use the correct web app URL**  
+   The URL must be the **deployed** web app URL and must end with **`/exec`**. Do **not** use the **/dev** URL from the editor. Copy the URL from **Deploy → Manage deployments** (the “Web app” URL).
 
-3. **Redeploy the Apps Script after editing**  
+3. **Environment variable on Vercel**  
+   In Vercel: Project → **Settings → Environment Variables**. Set `GOOGLE_SHEETS_WEB_APP_URL` to that full **/exec** URL. After changing it, **redeploy** the project (Deployments → ⋮ on latest → Redeploy).
+
+4. **Redeploy the Apps Script after editing**  
    In Apps Script: **Deploy → Manage deployments** → pencil icon on the deployment → **Version: New version** → Deploy. The URL stays the same; no need to change Vercel.
 
-4. **Check Vercel function logs**  
+5. **See what Google returned**  
+   If the form shows “Failed to save submission”, the error text now includes what the API got from Google (e.g. “Google returned 404” or “Script error: …”). Use that to see if the URL is wrong (404), access is denied (403), or the script threw an error.
+
+6. **Check Vercel function logs**  
    After submitting the form, open Vercel → Project → **Logs** (or **Functions** → select `submit-design-partner`). Look for errors (e.g. 502, “Google Apps Script error”). That will show whether the failure is in the API or in the script.
 
-5. **Test the script manually**  
+7. **Test the script manually**  
    In Apps Script, run this once (Run → Run function → `testAppend`). It adds a test row so you can confirm the sheet and script work:
    ```javascript
    function testAppend() {

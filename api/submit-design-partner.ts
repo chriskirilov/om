@@ -23,6 +23,7 @@ export default async function handler(req: { method?: string; body?: unknown }, 
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({ data: JSON.stringify(body) }).toString(),
+      signal: AbortSignal.timeout(15000),
     });
 
     const text = await sheetRes.text();
@@ -35,18 +36,27 @@ export default async function handler(req: { method?: string; body?: unknown }, 
 
     // Apps Script returns 200 even when it returns { error: "..." }, so check body too
     if (!sheetRes.ok || data.error) {
+      const bodyPreview = text.slice(0, 300).replace(/\s+/g, ' ').trim();
+      const detail = data.error
+        ? `Script error: ${data.error}`
+        : `Google returned ${sheetRes.status}. Body: ${bodyPreview || '(empty)'}`;
       console.error('Google Apps Script error:', sheetRes.status, text);
       return res.status(502).json({
         error: 'Failed to save submission. Please try again or email us directly.',
-        detail: data.error || (sheetRes.ok ? undefined : text.slice(0, 200)),
+        detail,
       });
     }
 
     return res.status(200).json({ ok: true });
   } catch (e) {
+    const err = e as Error & { code?: string; name?: string };
+    const isTimeout = err.name === 'AbortError' || err.code === 'ETIMEDOUT';
     console.error('submit-design-partner error:', e);
     return res.status(500).json({
       error: 'Something went wrong. Please try again or email us directly.',
+      detail: isTimeout
+        ? 'Request to Google timed out. Check that GOOGLE_SHEETS_WEB_APP_URL is correct and the script is deployed.'
+        : err.message?.slice(0, 200),
     });
   }
 }
