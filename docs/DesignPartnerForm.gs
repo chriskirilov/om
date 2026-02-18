@@ -5,7 +5,13 @@
  */
 
 function myFunction() {
-  // Not used. The web app runs doPost() when the form submits.
+  // Not used. The web app runs doGet/doPost.
+}
+
+function doGet(e) {
+  // Opening the URL in a browser sends GET; return a simple message so the app loads (and stays authorized).
+  return ContentService.createTextOutput(JSON.stringify({ ok: true, message: 'Form submissions use POST.' }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(e) {

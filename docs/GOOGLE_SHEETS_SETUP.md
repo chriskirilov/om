@@ -62,7 +62,7 @@ function doPost(e) {
 3. Set:
    - **Description:** e.g. "Design partner form"
    - **Execute as:** Me (your Google account)
-   - **Who has access:** Anyone
+   - **Who has access:** **Anyone** — must be "Anyone" (not "Anyone with a Google account"). Otherwise the Vercel server gets 403 when it calls the URL.
 4. Click **Deploy**, authorize the app when prompted, then copy the **Web app URL** (looks like `https://script.google.com/macros/s/.../exec`).
 
 ## 4. Configure Vercel
@@ -93,13 +93,16 @@ After this, each form submission will add a new row in your sheet with timestamp
 4. **Redeploy the Apps Script after editing**  
    In Apps Script: **Deploy → Manage deployments** → pencil icon on the deployment → **Version: New version** → Deploy. The URL stays the same; no need to change Vercel.
 
-5. **See what Google returned**  
+5. **Google returned 403**  
+   The web app is not open to anonymous callers. In Apps Script: **Deploy → Manage deployments** → Edit (pencil) → set **Who has access** to **Anyone** (not "Anyone with a Google account"). Save as new version and Deploy.
+
+6. **See what Google returned**  
    If the form shows “Failed to save submission”, the error text now includes what the API got from Google (e.g. “Google returned 404” or “Script error: …”). Use that to see if the URL is wrong (404), access is denied (403), or the script threw an error.
 
-6. **Check Vercel function logs**  
+7. **Check Vercel function logs**  
    After submitting the form, open Vercel → Project → **Logs** (or **Functions** → select `submit-design-partner`). Look for errors (e.g. 502, “Google Apps Script error”). That will show whether the failure is in the API or in the script.
 
-7. **Test the script manually**  
+8. **Test the script manually**  
    In Apps Script, run this once (Run → Run function → `testAppend`). It adds a test row so you can confirm the sheet and script work:
    ```javascript
    function testAppend() {
