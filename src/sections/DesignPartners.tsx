@@ -40,6 +40,8 @@ const stageOptions = [
 export default function DesignPartners() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const reveals = sectionRef.current?.querySelectorAll('.reveal');
@@ -61,9 +63,37 @@ export default function DesignPartners() {
     return () => io.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    const form = e.currentTarget;
+    const payload = {
+      first_name: (form.elements.namedItem('first_name') as HTMLInputElement)?.value ?? '',
+      last_name: (form.elements.namedItem('last_name') as HTMLInputElement)?.value ?? '',
+      company: (form.elements.namedItem('company') as HTMLInputElement)?.value ?? '',
+      email: (form.elements.namedItem('email') as HTMLInputElement)?.value ?? '',
+      stage: (form.elements.namedItem('stage') as HTMLSelectElement)?.value ?? '',
+      gtm_tools: (form.elements.namedItem('gtm_tools') as HTMLInputElement)?.value ?? '',
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value ?? '',
+    };
+    try {
+      const res = await fetch('/api/submit-design-partner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError((data as { error?: string }).error || 'Something went wrong. Please try again or email us directly.');
+      }
+    } catch {
+      setSubmitError('Network error. Please try again or email us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -130,16 +160,23 @@ export default function DesignPartners() {
                   </div>
 
                   <form onSubmit={handleSubmit}>
+                    {submitError && (
+                      <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-800">
+                        {submitError}
+                      </div>
+                    )}
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div>
                         <label className="block text-xs font-medium text-[var(--text)] tracking-tight mb-1.5">
                           First name
                         </label>
                         <input
+                          name="first_name"
                           type="text"
                           placeholder="First"
                           className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)]"
                           required
+                          disabled={submitting}
                         />
                       </div>
                       <div>
@@ -147,10 +184,12 @@ export default function DesignPartners() {
                           Last name
                         </label>
                         <input
+                          name="last_name"
                           type="text"
                           placeholder="Last"
                           className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)]"
                           required
+                          disabled={submitting}
                         />
                       </div>
                     </div>
@@ -160,10 +199,12 @@ export default function DesignPartners() {
                         Company
                       </label>
                       <input
+                        name="company"
                         type="text"
                         placeholder="Your company"
                         className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)]"
                         required
+                        disabled={submitting}
                       />
                     </div>
 
@@ -172,10 +213,12 @@ export default function DesignPartners() {
                         Work email
                       </label>
                       <input
+                        name="email"
                         type="email"
                         placeholder="you@yourcompany.com"
                         className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)]"
                         required
+                        disabled={submitting}
                       />
                     </div>
 
@@ -184,6 +227,7 @@ export default function DesignPartners() {
                         Stage
                       </label>
                       <select
+                        name="stage"
                         className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white cursor-pointer appearance-none"
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23A8A49E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
@@ -192,6 +236,7 @@ export default function DesignPartners() {
                           paddingRight: '36px',
                         }}
                         required
+                        disabled={submitting}
                       >
                         <option value="" disabled selected>
                           Select your stage
@@ -209,9 +254,11 @@ export default function DesignPartners() {
                         GTM tools you're running
                       </label>
                       <input
+                        name="gtm_tools"
                         type="text"
                         placeholder="HubSpot, Apollo, Salesforce, Lucia..."
                         className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)]"
+                        disabled={submitting}
                       />
                     </div>
 
@@ -220,17 +267,20 @@ export default function DesignPartners() {
                         The pipeline question you can't currently answer
                       </label>
                       <textarea
+                        name="message"
                         placeholder="e.g. We have attribution data but no way to see which channels produce users who actually convert and stay..."
                         className="w-full bg-[var(--off)] border border-[var(--border)] rounded-lg px-3.5 py-2.5 text-sm font-light text-[var(--text)] outline-none transition-all focus:border-[var(--border-dark)] focus:bg-white placeholder:text-[var(--text-dim)] resize-y min-h-[88px] leading-[1.6]"
                         required
+                        disabled={submitting}
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-[var(--text)] text-white border-none rounded-lg px-6 py-3.5 text-sm font-medium tracking-tight cursor-pointer transition-all mt-1 hover:bg-[var(--green)]"
+                      disabled={submitting}
+                      className="w-full bg-[var(--text)] text-white border-none rounded-lg px-6 py-3.5 text-sm font-medium tracking-tight cursor-pointer transition-all mt-1 hover:bg-[var(--green)] disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Submit application
+                      {submitting ? 'Submitting…' : 'Submit application'}
                     </button>
 
                     <div className="text-[11px] text-[var(--text-dim)] text-center mt-3 leading-[1.6] font-light">
