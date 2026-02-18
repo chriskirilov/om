@@ -18,10 +18,11 @@ export default async function handler(req: { method?: string; body?: unknown }, 
       return res.status(400).json({ error: 'Invalid request body.' });
     }
 
+    // Send as form-encoded so Apps Script populates e.parameter (e.postData can be missing for JSON)
     const sheetRes = await fetch(WEB_APP_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ data: JSON.stringify(body) }).toString(),
     });
 
     const text = await sheetRes.text();
@@ -37,6 +38,7 @@ export default async function handler(req: { method?: string; body?: unknown }, 
       console.error('Google Apps Script error:', sheetRes.status, text);
       return res.status(502).json({
         error: 'Failed to save submission. Please try again or email us directly.',
+        detail: data.error || (sheetRes.ok ? undefined : text.slice(0, 200)),
       });
     }
 

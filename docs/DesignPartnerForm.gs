@@ -10,14 +10,21 @@ function myFunction() {
 
 function doPost(e) {
   try {
-    if (!e || !e.postData || !e.postData.contents) {
+    // Support both form-encoded (e.parameter.data) and JSON body (e.postData.contents)
+    var jsonStr = null;
+    if (e && e.parameter && e.parameter.data) {
+      jsonStr = e.parameter.data;
+    } else if (e && e.postData && e.postData.contents) {
+      jsonStr = e.postData.contents;
+    }
+    if (!jsonStr) {
       return ContentService.createTextOutput(
         JSON.stringify({ error: 'No request body' })
       ).setMimeType(ContentService.MimeType.JSON);
     }
 
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
+    var data = JSON.parse(jsonStr);
 
     var row = [
       new Date(),

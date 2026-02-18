@@ -83,11 +83,12 @@ export default function DesignPartners() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const data = await res.json().catch(() => ({}));
+      const data = (await res.json().catch(() => ({}))) as { error?: string; detail?: string };
       if (res.ok) {
         setSubmitted(true);
       } else {
-        setSubmitError((data as { error?: string }).error || 'Something went wrong. Please try again or email us directly.');
+        const msg = data.error || 'Something went wrong. Please try again or email us directly.';
+        setSubmitError(data.detail ? `${msg} (${data.detail})` : msg);
       }
     } catch {
       setSubmitError('Network error. Please try again or email us directly.');
