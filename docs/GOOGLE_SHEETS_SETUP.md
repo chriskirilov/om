@@ -17,7 +17,8 @@ Form submissions are sent to your Vercel API, which forwards them to a **Google 
 2. Delete the default `function myFunction() { }` and paste in the **entire contents** of **`docs/DesignPartnerForm.gs`** from this repo (or copy the code below).
 3. Save (Ctrl/Cmd + S) and give the project a name (e.g. "Design partner form handler").
 
-**Copy from `docs/DesignPartnerForm.gs`**, or use this:
+**Copy from `docs/DesignPartnerForm.gs`** (recommended), or use the code below.  
+**Important:** Do **not** copy the word `javascript` — that is only a markdown label. Paste only the code starting with `function myFunction`.
 
 ```javascript
 function myFunction() {
@@ -26,9 +27,13 @@ function myFunction() {
 
 function doPost(e) {
   try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ error: 'No request body' })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var data = JSON.parse(e.postData.contents);
-
     var row = [
       new Date(),
       data.first_name || '',
@@ -40,14 +45,12 @@ function doPost(e) {
       data.message || ''
     ];
     sheet.appendRow(row);
-
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(
       JSON.stringify({ error: err.toString() })
-    )
-      .setMimeType(ContentService.MimeType.JSON);
+    ).setMimeType(ContentService.MimeType.JSON);
   }
 }
 ```
@@ -73,3 +76,29 @@ function doPost(e) {
 After this, each form submission will add a new row in your sheet with timestamp and all form fields. You can use the sheet for review and later for automated emails (e.g. with Zapier, Make, or Google Workspace).
 
 **Note:** The form submits to `/api/submit-design-partner`, which is only available when deployed on Vercel (or when you run `vercel dev` locally). It will not work with plain `npm run dev` unless you add a proxy.
+
+---
+
+## Troubleshooting (data not recording)
+
+1. **Script must be bound to the sheet**  
+   Open the **Google Sheet** where you want rows to appear, then use **Extensions → Apps Script**. If you created the script from a different place, the “active” spreadsheet may be wrong. Create a new sheet, add the header row, then **Extensions → Apps Script** and paste the script there. Redeploy and use the **new** web app URL in Vercel.
+
+2. **Environment variable on Vercel**  
+   In Vercel: Project → **Settings → Environment Variables**. Ensure `GOOGLE_SHEETS_WEB_APP_URL` is set to the full web app URL (e.g. `https://script.google.com/macros/s/xxxx/exec`). After changing it, **redeploy** the project (Deployments → ⋮ on latest → Redeploy).
+
+3. **Redeploy the Apps Script after editing**  
+   In Apps Script: **Deploy → Manage deployments** → pencil icon on the deployment → **Version: New version** → Deploy. The URL stays the same; no need to change Vercel.
+
+4. **Check Vercel function logs**  
+   After submitting the form, open Vercel → Project → **Logs** (or **Functions** → select `submit-design-partner`). Look for errors (e.g. 502, “Google Apps Script error”). That will show whether the failure is in the API or in the script.
+
+5. **Test the script manually**  
+   In Apps Script, run this once (Run → Run function → `testAppend`). It adds a test row so you can confirm the sheet and script work:
+   ```javascript
+   function testAppend() {
+     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+     sheet.appendRow([new Date(), 'Test', 'User', 'Test Co', 'test@test.com', 'Pre-revenue', '', 'Test message']);
+   }
+   ```
+   If that fails, the script isn’t bound to the right sheet or permissions are wrong.

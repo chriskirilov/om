@@ -10,6 +10,12 @@ function myFunction() {
 
 function doPost(e) {
   try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ error: 'No request body' })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
+
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var data = JSON.parse(e.postData.contents);
 
