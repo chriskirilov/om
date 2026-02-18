@@ -5,6 +5,7 @@ import Product from './sections/Product';
 import GMICloud from './sections/GMICloud';
 import DesignPartners from './sections/DesignPartners';
 import Footer from './sections/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <GMICloud />
       <DesignPartners />
       <Footer />
+      <Analytics />
     </div>
   );
 }
