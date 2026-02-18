@@ -79,7 +79,9 @@ export default function Hero() {
               Apply as design partner
             </a>
             <a
-              href="#product"
+              href="https://pulse.pipelineom.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[14px] font-normal text-[var(--text-mid)] no-underline flex items-center gap-1.5 transition-colors hover:text-[var(--text)]"
             >
               See the product →
@@ -112,7 +114,7 @@ export default function Hero() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]"></div>
               </div>
               <div className="font-mono text-[10px] text-[var(--text-dim)] bg-[var(--border)] px-3 py-1 rounded">
-                app.pipelineom.com/pulse
+                pulse.pipelineom.com
               </div>
               <div className="w-[52px]"></div>
             </div>

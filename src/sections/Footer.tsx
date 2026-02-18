@@ -6,7 +6,9 @@ export default function Footer() {
         <ul className="flex flex-wrap gap-6 list-none">
           <li>
             <a
-              href="#product"
+              href="https://pulse.pipelineom.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
             >
               Pulse
@@ -18,14 +20,6 @@ export default function Footer() {
               className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
             >
               Design Partners
-            </a>
-          </li>
-          <li>
-            <a
-              href="#gmi"
-              className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
-            >
-              GMI Cloud
             </a>
           </li>
           <li>
