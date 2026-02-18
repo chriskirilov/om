@@ -64,7 +64,7 @@ export default function GMICloud() {
             </div>
 
             <p className="text-[15px] font-light text-[var(--text-mid)] leading-[1.75] mb-8">
-              Being part of GMI Cloud's accelerator means PipelineOM can run signal extraction on any model, at any
+              Being part of GMI Cloud's accelerator means OM can run signal extraction on any model, at any
               scale, without building infrastructure from scratch. A pgdump, a CRM export, an attribution dataset — we
               process it against frontier models to surface behavioral patterns your team has never been able to see.
             </p>

@@ -111,7 +111,7 @@ export default function DesignPartners() {
                 What you get
               </div>
               <div className="text-[13px] font-light text-[var(--green)] leading-[1.7]">
-                Free access to PipelineOM Pulse. A GTM Signal Audit of your pipeline data. Direct input on the roadmap.
+                Free access to OM Pulse. A GTM Signal Audit of your pipeline data. Direct input on the roadmap.
                 Founder pricing locked for life when we go paid.
               </div>
             </div>

@@ -23,7 +23,7 @@ const steps: Step[] = [
   {
     num: '01',
     title: 'Connect your existing stack',
-    body: 'CRM, email, calendar, outbound tools. PipelineOM ingests what you already have — no migration, no new tool to maintain.',
+    body: 'CRM, email, calendar, outbound tools. OM ingests what you already have — no migration, no new tool to maintain.',
   },
   {
     num: '02',
@@ -76,7 +76,7 @@ export default function Product() {
             </div>
 
             <div className="reveal font-serif text-[clamp(28px,3.5vw,44px)] font-normal tracking-tight text-[var(--text)] leading-[1.1] mb-5">
-              PipelineOM Pulse
+              OM Pulse
             </div>
 
             <p className="reveal text-base font-light text-[var(--text-mid)] leading-[1.75] mb-9">

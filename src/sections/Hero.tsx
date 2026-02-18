@@ -58,7 +58,7 @@ export default function Hero() {
         <div>
           <div className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[var(--green)] tracking-wide mb-9">
             <span className="eyebrow-dot w-[5px] h-[5px] bg-[var(--green-mid)] rounded-full"></span>
-            PipelineOM Pulse — now live
+            OM Pulse — now live
           </div>
 
           <h1 className="font-serif text-[clamp(44px,5vw,68px)] font-normal leading-[1.08] tracking-tight text-[var(--text)] mb-7">
@@ -67,7 +67,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-[17px] font-light text-[var(--text-mid)] leading-[1.75] mb-12 max-w-[440px]">
-            PipelineOM extracts behavioral signal from your existing stack — without manual CRM entry, without new
+            OM extracts behavioral signal from your existing stack — without manual CRM entry, without new
             dashboards — so you always know what's actually happening in your pipeline.
           </p>
 

@@ -26,7 +26,7 @@ export default function Navigation() {
             <circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1" opacity="0.4" />
           </svg>
         </div>
-        PipelineOM
+        OM
       </a>
 
       <div className="hidden lg:flex items-center gap-10">
