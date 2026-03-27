@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const FooterLogoIcon = () => (
-  <div style={{width:26,height:26,background:'#1B2A4A',borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-    <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-      <circle cx="9" cy="9" r="7.5" stroke="white" strokeWidth="1.2" opacity="0.25"/>
-      <circle cx="9" cy="9" r="5" stroke="white" strokeWidth="1.2" opacity="0.55"/>
-      <circle cx="9" cy="9" r="2.5" stroke="white" strokeWidth="1.4"/>
-      <circle cx="9" cy="9" r="1" fill="white"/>
-    </svg>
-  </div>
+  <img src="/logo.png" alt="OM" width={26} height={26} style={{borderRadius:6,flexShrink:0}} />
 );
 
 export default function Footer() {

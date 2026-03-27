@@ -1,14 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
-const LogoIcon = () => (
-  <div style={{width:32,height:32,background:'#1B2A4A',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <circle cx="9" cy="9" r="7.5" stroke="white" strokeWidth="1.2" opacity="0.25"/>
-      <circle cx="9" cy="9" r="5" stroke="white" strokeWidth="1.2" opacity="0.55"/>
-      <circle cx="9" cy="9" r="2.5" stroke="white" strokeWidth="1.4"/>
-      <circle cx="9" cy="9" r="1" fill="white"/>
-    </svg>
-  </div>
+const LogoIcon = ({ size = 32 }: { size?: number }) => (
+  <img src="/logo.png" alt="OM" width={size} height={size} style={{borderRadius:8,flexShrink:0}} />
 );
 
 export default function Navigation() {
