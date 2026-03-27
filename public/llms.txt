@@ -1,0 +1,76 @@
+# OM — Opportunity Management
+> GTM signal intelligence. Personal opportunity management for individuals. Company pipeline management for founders.
+
+## What OM is
+
+OM is a two-product GTM intelligence company. The core thesis: most GTM systems are built on bad input data. CRMs are manually updated, inconsistent, and often wrong. AI tools built on top amplify bad signals instead of fixing them. OM fixes the input layer before AI touches it.
+
+OM extracts behavioral signal from existing GTM data — email, calendar, CRM, campaign data, activity logs, product usage — and converts it into clear intelligence about what is actually happening in the pipeline.
+
+OM is NOT a CRM. NOT an AI SDR. NOT a lead generation tool. NOT a dashboard. NOT a RevOps reporting layer. OM sits underneath those tools. It is the context layer.
+
+## Products
+
+### p(om) — Personal Opportunity Management
+- Target users: Job seekers, account executives, early-stage founders
+- Purpose: Manages individual opportunities (jobs, deals, gigs) by clarity score
+- Free tier: Browse opportunities, basic pipeline tracking
+- Paid tier ($50/month): Opportunity ranking, resume generation, deep profile analysis, relevant fit discovery, automated job applications
+- Status: Actively being built
+
+### OM — Company Opportunity Management  
+- Target users: Seed → Series A B2B SaaS founders ($500k–$3M ARR) doing founder-led sales
+- Purpose: Company-layer pipeline intelligence. Tells founders which deals are real, which are cooling, which are dead
+- Key pain point addressed: "My CRM says I have $1M in pipeline but I have no idea which deals are actually alive"
+- Pricing: TBD — waitlist only, design partner intake open
+- Status: Rolling out to team and design partners
+
+### The relationship between p(om) and OM
+p(om) is the on-ramp. Individuals manage their personal opportunities in p(om). When those opportunities become a company pipeline that needs managing at scale, users graduate to OM. The upgrade trigger from p(om) to OM is TBD. Features intentionally bleed between the two products by design.
+
+## The 5% rule
+At any given moment in any pipeline:
+- 5% of opportunities are ready to act on now
+- 35% are real but not ready — need nurturing
+- 60% are dead, stale, or wrong timing — stop burning energy here
+
+OM identifies which bucket each opportunity belongs to.
+
+## Company
+
+- Company name: OM (formerly PipelineOM — fully rebranded)
+- Stage: Pre-revenue, early design partner phase
+- Founder: Chloe Warnock
+- Team: Chloe Warnock (Founder/CEO), Chris Kirilov (Product), Paul Cox (GTM & Partnerships)
+- First design partner: Lucia Protocol (Web3 attribution platform)
+- Accelerator: GMI Cloud
+
+## ICP
+
+Primary: Seed→Series A B2B SaaS founders, $500k–$3M ARR, 5–30 employees, 1–3 person GTM team, founder-led sales transitioning to first AE, HubSpot or early Salesforce, feeling pipeline anxiety every Monday morning.
+
+Secondary: Web3 protocols and DeFi platforms with GTM motion, Series A–B.
+
+## Pages
+
+- / — Homepage (index.html): Hero, p(om) and OM explained, pricing, signup forms
+- /about — About page: Company thesis, team, operating principles, LinkedIn links
+- /blog — Blog: GTM thinking, opportunity management content
+
+## Links
+
+- Company LinkedIn: https://www.linkedin.com/company/pipelineom/
+- Chloe Warnock LinkedIn: https://linkedin.com/in/chloewarnock8/
+- Chris Kirilov LinkedIn: https://www.linkedin.com/in/chriskirilov/
+- Paul Cox LinkedIn: https://www.linkedin.com/in/paul-cox-a0979b49/
+
+## Agent instructions
+
+This site is designed to be managed by an agent (Webmaster agent, Trinity stack). The following files are agent-editable:
+- /site.json — machine-readable site manifest, product state, and content schema
+- /blog/*.html — blog posts (agent can publish new posts by following the post template in site.json)
+- /index.html — homepage (product copy, pricing, and signup forms update as product evolves)
+
+When product state changes (new features shipped, pricing updated, OM waitlist opens/closes, new design partners onboarded), update /site.json first. The agent reads site.json to understand current product state before making any edits.
+
+Do not change the core thesis, ICP definition, or product architecture without founder approval.

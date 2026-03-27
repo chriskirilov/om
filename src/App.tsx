@@ -1,24 +1,25 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from './sections/Navigation';
-import Hero from './sections/Hero';
-import Problem from './sections/Problem';
-import Product from './sections/Product';
-import GMICloud from './sections/GMICloud';
-import DesignPartners from './sections/DesignPartners';
 import Footer from './sections/Footer';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import BlogPage from './pages/BlogPage';
 import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-      <Hero />
-      <Problem />
-      <Product />
-      <GMICloud />
-      <DesignPartners />
-      <Footer />
-      <Analytics />
-    </div>
+    <BrowserRouter>
+      <div style={{ minHeight: '100vh', background: 'var(--white)' }}>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+        </Routes>
+        <Footer />
+        <Analytics />
+      </div>
+    </BrowserRouter>
   );
 }
 

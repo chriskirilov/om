@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      width:1584px;
+      height:396px;
+      overflow:hidden;
+      background:#0D0D14;
+      font-family:'Geist',system-ui,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .canvas{
+      width:1584px;
+      height:396px;
+      position:relative;
+      background:#0D0D14;
+      overflow:hidden;
+    }
+
+    /* Gradient glows */
+    .glow-left{
+      position:absolute;
+      top:-60px;left:-60px;
+      width:600px;height:500px;
+      background:radial-gradient(ellipse,rgba(79,70,229,0.18) 0%,transparent 65%);
+      pointer-events:none;
+    }
+
+    .glow-right{
+      position:absolute;
+      top:-40px;right:-40px;
+      width:500px;height:460px;
+      background:radial-gradient(ellipse,rgba(5,150,105,0.12) 0%,transparent 65%);
+      pointer-events:none;
+    }
+
+    /* Grid */
+    .grid{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:48px 48px;
+      -webkit-mask-image:radial-gradient(ellipse 90% 90% at 60% 50%,black 20%,transparent 80%);
+      mask-image:radial-gradient(ellipse 90% 90% at 60% 50%,black 20%,transparent 80%);
+    }
+
+    /* LEFT CONTENT — starts at x:220 to clear profile pic safe zone */
+    .left{
+      position:absolute;
+      left:220px;
+      top:0;bottom:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:0;
+    }
+
+    .left-label{
+      font-size:13px;
+      font-weight:400;
+      color:rgba(255,255,255,0.22);
+      letter-spacing:0.04em;
+      margin-bottom:20px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .left-label-line{
+      display:block;
+      width:24px;height:1px;
+      background:rgba(255,255,255,0.15);
+    }
+
+    .wordmark-wrap{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .logo-mark{
+      width:64px;height:64px;
+      background:#1B2A4A;
+      border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+
+    .wordmark{
+      font-family:'Geist',monospace;
+      font-size:72px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:-0.03em;
+      line-height:1;
+    }
+
+    .tagline{
+      font-size:17px;
+      font-weight:300;
+      color:rgba(255,255,255,0.42);
+      letter-spacing:0.02em;
+      margin-bottom:20px;
+    }
+
+    .divider{
+      width:280px;height:1px;
+      background:rgba(255,255,255,0.08);
+      margin-bottom:14px;
+    }
+
+    .url{
+      font-size:13px;
+      font-weight:400;
+      color:rgba(255,255,255,0.2);
+      letter-spacing:0.04em;
+    }
+
+    /* Profile pic safe zone indicator — left side bottom 180px is covered */
+    /* Safe zone: x 0-210, y 216-396 — keep content away from here */
+
+    /* RIGHT CONTENT — two product cards */
+    .cards{
+      position:absolute;
+      right:48px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      gap:16px;
+      align-items:stretch;
+    }
+
+    /* bridge arrow */
+    .bridge{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      padding:0 4px;
+    }
+
+    .bridge-arrow{
+      font-size:16px;
+      color:rgba(255,255,255,0.12);
+    }
+
+    .bridge-label{
+      font-size:10px;
+      color:rgba(255,255,255,0.1);
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      writing-mode:vertical-rl;
+    }
+
+    /* Card base */
+    .card{
+      width:288px;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .card-pom{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .card-om{
+      background:rgba(10,10,15,0.7);
+      border:1px solid rgba(255,255,255,0.07);
+    }
+
+    .card-header{
+      padding:12px 16px 10px;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .badge{
+      height:20px;
+      padding:0 8px;
+      border-radius:5px;
+      font-size:10px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      letter-spacing:0.03em;
+    }
+
+    .badge-pom{
+      font-family:'Geist',monospace;
+      background:rgba(79,70,229,0.15);
+      color:#818CF8;
+      border:1px solid rgba(79,70,229,0.25);
+    }
+
+    .badge-free{
+      background:rgba(79,70,229,0.08);
+      color:#818CF8;
+      border:1px solid rgba(79,70,229,0.15);
+    }
+
+    .badge-om{
+      background:rgba(5,150,105,0.15);
+      color:#34D399;
+      border:1px solid rgba(5,150,105,0.25);
+    }
+
+    .badge-wait{
+      background:rgba(217,119,6,0.12);
+      color:#FCD34D;
+      border:1px solid rgba(217,119,6,0.2);
+    }
+
+    .card-title-area{
+      padding:12px 16px 10px;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+
+    .card-title{
+      font-size:14px;
+      font-weight:600;
+      color:#fff;
+      letter-spacing:-0.01em;
+      line-height:1.3;
+    }
+
+    .card-body{
+      padding:8px 0 10px;
+    }
+
+    .card-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:6px 16px;
+    }
+
+    .row-dot{
+      width:6px;height:6px;
+      border-radius:50%;
+      flex-shrink:0;
+    }
+
+    .row-name{
+      flex:1;
+      font-size:12px;
+      font-weight:400;
+      color:rgba(255,255,255,0.45);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .row-score{
+      font-size:12px;
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .card-footer{
+      padding:6px 16px 10px;
+      border-top:1px solid rgba(255,255,255,0.04);
+    }
+
+    .card-footer-text{
+      font-size:11px;
+      color:rgba(255,255,255,0.18);
+      letter-spacing:0.02em;
+    }
+  </style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="grid"></div>
+
+  <!-- LEFT — clear of profile pic (safe zone bottom-left ~210px wide) -->
+  <div class="left">
+    <div class="left-label">
+      <span class="left-label-line"></span>
+      A job. A deal. A gig. A company pipeline.
+    </div>
+    <div class="wordmark-wrap">
+      <div class="logo-mark">
+        <svg width="36" height="36" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.2" opacity="0.25"/>
+          <circle cx="9" cy="9" r="5" stroke="white" stroke-width="1.2" opacity="0.55"/>
+          <circle cx="9" cy="9" r="2.5" stroke="white" stroke-width="1.4"/>
+          <circle cx="9" cy="9" r="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="wordmark">p(om)</div>
+    </div>
+    <div class="tagline">Opportunity Management</div>
+    <div class="divider"></div>
+    <div class="url">pipelineom.com</div>
+  </div>
+
+  <!-- RIGHT — product cards -->
+  <div class="cards">
+
+    <!-- p(om) card -->
+    <div class="card card-pom">
+      <div class="card-header">
+        <div class="badge badge-pom">p(om)</div>
+        <div class="badge badge-free">Free → $50</div>
+      </div>
+      <div class="card-title-area">
+        <div class="card-title">Personal Opportunity<br/>Management</div>
+      </div>
+      <div class="card-body">
+        <div class="card-row">
+          <div class="row-dot" style="background:#10B981;"></div>
+          <div class="row-name">Stripe · GTM Lead EMEA</div>
+          <div class="row-score" style="color:#10B981;">9</div>
+        </div>
+        <div class="card-row">
+          <div class="row-dot" style="background:#F59E0B;"></div>
+          <div class="row-name">Plaid · Account Executive</div>
+          <div class="row-score" style="color:#F59E0B;">5</div>
+        </div>
+        <div class="card-row">
+          <div class="row-dot" style="background:#EF4444;"></div>
+          <div class="row-name">HubSpot · Sales Partner</div>
+          <div class="row-score" style="color:#EF4444;">2</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-footer-text">Jobs · Gigs · Deals</div>
+      </div>
+    </div>
+
+    <!-- bridge -->
+    <div class="bridge">
+      <div class="bridge-arrow">→</div>
+      <div class="bridge-label">graduate</div>
+    </div>
+
+    <!-- OM card -->
+    <div class="card card-om">
+      <div class="card-header">
+        <div class="badge badge-om">OM</div>
+        <div class="badge badge-wait">Waitlist</div>
+      </div>
+      <div class="card-title-area">
+        <div class="card-title">Company Opportunity<br/>Management</div>
+      </div>
+      <div class="card-body">
+        <div class="card-row">
+          <div class="row-dot" style="background:#10B981;"></div>
+          <div class="row-name">Lucia Protocol · $24k</div>
+          <div class="row-score" style="color:#10B981;">9.4</div>
+        </div>
+        <div class="card-row">
+          <div class="row-dot" style="background:#F59E0B;"></div>
+          <div class="row-name">SaaS Corp · $12k</div>
+          <div class="row-score" style="color:#F59E0B;">4.6</div>
+        </div>
+        <div class="card-row">
+          <div class="row-dot" style="background:#EF4444;"></div>
+          <div class="row-name">Agency · $8k</div>
+          <div class="row-score" style="color:#EF4444;">1.2</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-footer-text">Seed → Series A founders</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

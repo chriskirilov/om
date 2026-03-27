@@ -1,38 +1,29 @@
+import { Link } from 'react-router-dom';
+
+const FooterLogoIcon = () => (
+  <div style={{width:26,height:26,background:'#1B2A4A',borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+    <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="7.5" stroke="white" strokeWidth="1.2" opacity="0.25"/>
+      <circle cx="9" cy="9" r="5" stroke="white" strokeWidth="1.2" opacity="0.55"/>
+      <circle cx="9" cy="9" r="2.5" stroke="white" strokeWidth="1.4"/>
+      <circle cx="9" cy="9" r="1" fill="white"/>
+    </svg>
+  </div>
+);
+
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-[var(--border)] px-6 lg:px-14 py-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
-      <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8">
-        <div className="text-sm font-semibold text-[var(--text)] tracking-tight">OM</div>
-        <ul className="flex flex-wrap gap-6 list-none">
-          <li>
-            <a
-              href="https://pulse.pipelineom.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
-            >
-              Pulse
-            </a>
-          </li>
-          <li>
-            <a
-              href="#apply"
-              className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
-            >
-              Design Partners
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:hello@pipelineom.com"
-              className="text-[13px] text-[var(--text-dim)] no-underline transition-colors hover:text-[var(--text)]"
-            >
-              hello@pipelineom.com
-            </a>
-          </li>
-        </ul>
+    <footer>
+      <div className="f-left">
+        <Link to="/" style={{display:'flex',alignItems:'center',gap:8,textDecoration:'none'}}>
+          <FooterLogoIcon />
+          <span style={{fontFamily:"'Geist',monospace",fontSize:13,fontWeight:600,color:'var(--ink)',letterSpacing:'-0.01em'}}>p(om)</span>
+        </Link>
+        <Link to="/about" className="f-link">About</Link>
+        <Link to="/blog" className="f-link">Blog</Link>
+        <a href="https://www.linkedin.com/company/pipelineom/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="f-link">LinkedIn</a>
       </div>
-      <div className="text-xs text-[var(--text-dim)]">© 2026 OM</div>
+      <span className="f-note">&copy; 2026 OM &middot; Opportunity Management</span>
     </footer>
   );
 }

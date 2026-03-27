@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# AI agents and LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Agent-readable files
+Sitemap: https://pipelineom.com/sitemap.xml
+
+# Machine-readable site manifest
+# https://pipelineom.com/site.json
+
+# AI-readable content summary
+# https://pipelineom.com/llms.txt

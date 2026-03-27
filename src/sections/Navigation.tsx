@@ -1,55 +1,40 @@
-import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+const LogoIcon = () => (
+  <div style={{width:32,height:32,background:'#1B2A4A',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="7.5" stroke="white" strokeWidth="1.2" opacity="0.25"/>
+      <circle cx="9" cy="9" r="5" stroke="white" strokeWidth="1.2" opacity="0.55"/>
+      <circle cx="9" cy="9" r="2.5" stroke="white" strokeWidth="1.4"/>
+      <circle cx="9" cy="9" r="1" fill="white"/>
+    </svg>
+  </div>
+);
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-14 h-16 transition-all duration-200 ${
-        scrolled
-          ? 'bg-white/94 backdrop-blur-xl border-b border-[var(--border)]'
-          : 'bg-transparent'
-      }`}
-    >
-      <a href="#" className="flex items-center gap-2 text-[15px] font-semibold text-[var(--text)] tracking-tight no-underline">
-        <div className="w-6 h-6 bg-[var(--text)] rounded-[5px] flex items-center justify-center">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="2.5" fill="white" />
-            <circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1" opacity="0.4" />
-          </svg>
-        </div>
-        OM
-      </a>
-
-      <div className="hidden lg:flex items-center gap-10">
-        <a
-          href="https://pulse.pipelineom.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]"
-        >
-          Pulse
-        </a>
-        <a href="#how" className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]">
-          How it works
-        </a>
-        <a href="#gmi" className="text-[13px] font-normal text-[var(--text-mid)] no-underline transition-colors hover:text-[var(--text)]">
-          Partners
-        </a>
-        <a
-          href="#apply"
-          className="text-[13px] font-medium text-white bg-[var(--text)] px-[18px] py-2 rounded-md no-underline transition-opacity hover:opacity-80"
-        >
-          Apply as design partner
-        </a>
+    <nav>
+      <Link to="/" className="nav-logo">
+        <LogoIcon />
+        <span style={{fontFamily:"'Geist',monospace",fontSize:15,fontWeight:600,color:'#fff',letterSpacing:'-0.01em'}}>p(om)</span>
+      </Link>
+      <div className="nav-right">
+        <Link to="/about" className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}>About</Link>
+        <Link to="/blog" className={`nav-link${location.pathname === '/blog' ? ' active' : ''}`}>Blog</Link>
+        {isHome && (
+          <>
+            <a href="#signin" className="nav-link">Sign in</a>
+            <a href="#om-waitlist" className="nav-btn btn-ghost-nav">Join OM waitlist</a>
+          </>
+        )}
+        {isHome ? (
+          <a href="#pom-signup" className="nav-btn btn-white">Get p(om) free</a>
+        ) : (
+          <Link to="/#pom-signup" className="nav-btn btn-white">Get p(om) free</Link>
+        )}
       </div>
     </nav>
   );
