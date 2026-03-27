@@ -14,6 +14,7 @@ export default function AboutPage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("on");
+            entry.target.querySelectorAll(".reveal-child").forEach(c => c.classList.add("on"));
           }
         });
       },
@@ -75,7 +76,7 @@ export default function AboutPage() {
         <div className="eyebrow">How we operate</div>
         <h2>Principles we don't compromise on.</h2>
         <div className="values-list">
-          <div className="value-cell">
+          <div className="value-cell reveal-child delay-1">
             <div className="value-num">01</div>
             <div className="value-title">Clarity before action</div>
             <div className="value-desc">
@@ -83,7 +84,7 @@ export default function AboutPage() {
               are actually worth doing. Clarity is the product.
             </div>
           </div>
-          <div className="value-cell">
+          <div className="value-cell reveal-child delay-2">
             <div className="value-num">02</div>
             <div className="value-title">Honest about what we don't know</div>
             <div className="value-desc">
@@ -91,7 +92,7 @@ export default function AboutPage() {
               is worse than no answer.
             </div>
           </div>
-          <div className="value-cell">
+          <div className="value-cell reveal-child delay-3">
             <div className="value-num">03</div>
             <div className="value-title">The person comes before the company</div>
             <div className="value-desc">
@@ -100,7 +101,7 @@ export default function AboutPage() {
               — you don't start there.
             </div>
           </div>
-          <div className="value-cell">
+          <div className="value-cell reveal-child delay-4">
             <div className="value-num">04</div>
             <div className="value-title">Design partners over mass growth</div>
             <div className="value-desc">
@@ -121,7 +122,7 @@ export default function AboutPage() {
           through noise.
         </p>
         <div className="team-grid">
-          <div className="team-card">
+          <div className="team-card reveal-child delay-1">
             <div className="team-avatar">CW</div>
             <div className="team-name">Chloe Warnock</div>
             <div className="team-role">Co-Founder &amp; Head of GTM</div>
@@ -141,7 +142,7 @@ export default function AboutPage() {
             </a>
           </div>
 
-          <div className="team-card">
+          <div className="team-card reveal-child delay-2">
             <div className="team-avatar">CK</div>
             <div className="team-name">Chris Kirilov</div>
             <div className="team-role">Co-Founder &amp; CEO</div>
@@ -160,7 +161,7 @@ export default function AboutPage() {
             </a>
           </div>
 
-          <div className="team-card">
+          <div className="team-card reveal-child delay-3">
             <div className="team-avatar">PC</div>
             <div className="team-name">Paul Cox</div>
             <div className="team-role">GTM &amp; Partnerships</div>

@@ -10,14 +10,13 @@ export default function BlogPage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("on");
+            entry.target.querySelectorAll(".reveal-child").forEach(c => c.classList.add("on"));
           }
         });
       },
       { threshold: 0.07 }
     );
-
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
@@ -75,7 +74,7 @@ export default function BlogPage() {
 
         {/* POST GRID */}
         <div className="post-grid reveal">
-          <a className="post-card" href="#">
+          <a className="post-card reveal-child delay-1" href="#">
             <div className="pc-top">
               <div className="pc-tag tag-om">OM &middot; Personal</div>
               <div className="pc-title">The 5% rule: why most of your opportunities aren&rsquo;t actually opportunities</div>
@@ -87,7 +86,7 @@ export default function BlogPage() {
             </div>
           </a>
 
-          <a className="post-card" href="#">
+          <a className="post-card reveal-child delay-2" href="#">
             <div className="pc-top">
               <div className="pc-tag tag-gtm">GTM</div>
               <div className="pc-title">What founder-led sales actually looks like at $1M ARR</div>
@@ -99,7 +98,7 @@ export default function BlogPage() {
             </div>
           </a>
 
-          <a className="post-card" href="#">
+          <a className="post-card reveal-child delay-3" href="#">
             <div className="pc-top">
               <div className="pc-tag tag-om">OM &middot; Company</div>
               <div className="pc-title">Monday morning pipeline anxiety is a data problem, not a motivation problem</div>
@@ -111,7 +110,7 @@ export default function BlogPage() {
             </div>
           </a>
 
-          <a className="post-card" href="#">
+          <a className="post-card reveal-child delay-4" href="#">
             <div className="pc-top">
               <div className="pc-tag tag-om">OM &middot; Personal</div>
               <div className="pc-title">Why job applications and sales deals are the same problem</div>

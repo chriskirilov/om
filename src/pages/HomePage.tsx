@@ -7,7 +7,10 @@ export default function HomePage() {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('on');
+          if (entry.isIntersecting) {
+            entry.target.classList.add('on');
+            entry.target.querySelectorAll('.reveal-child').forEach(c => c.classList.add('on'));
+          }
         });
       },
       { threshold: 0.07 }
@@ -25,6 +28,8 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="hero">
+        <div className="hero-grain" />
+        <div className="hero-glow" />
         <div className="hero-inner">
           <h1>
             Every opportunity.
@@ -721,8 +726,10 @@ export default function HomePage() {
         </div>
       </div>
 
+      <div className="section-fade dark-to-light" />
+
       {/* ── HOW IT WORKS SECTION ── */}
-      <div className="light" id="how-it-works">
+      <div className="light" id="how-it-works" style={{borderTop:'none'}}>
         <div className="wrap reveal">
           <div className="section-product-label spl-om">
             OM · Opportunity Management
@@ -745,7 +752,7 @@ export default function HomePage() {
           </div>
 
           <div className="tam-grid">
-            <div className="tam-cell">
+            <div className="tam-cell reveal-child delay-1">
               <div className="tam-num">
                 5<span className="tam-pct-om">%</span>
               </div>
@@ -758,7 +765,7 @@ export default function HomePage() {
                 <div className="td"></div>Act immediately
               </div>
             </div>
-            <div className="tam-cell">
+            <div className="tam-cell reveal-child delay-2">
               <div className="tam-num">
                 35<span style={{ fontSize: 14, color: 'var(--mid)' }}>%</span>
               </div>
@@ -771,7 +778,7 @@ export default function HomePage() {
                 <div className="td"></div>Stay in orbit
               </div>
             </div>
-            <div className="tam-cell">
+            <div className="tam-cell reveal-child delay-3">
               <div className="tam-num">
                 60<span style={{ fontSize: 14, color: 'var(--mid)' }}>%</span>
               </div>
@@ -856,32 +863,32 @@ export default function HomePage() {
 
           {/* Bottom: 6 features in 2x3 grid */}
           <div className="feat-grid">
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-1">
               <div className="feat-icon">🎯</div>
               <div className="feat-title">Clarity scoring</div>
               <div className="feat-desc">Every opportunity scored by engagement, timing, and fit — no more gut-feel prioritisation.</div>
             </div>
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-2">
               <div className="feat-icon">🧠</div>
               <div className="feat-title">Learns your patterns</div>
               <div className="feat-desc">OM gets sharper every week, learning who's genuinely interested vs. going quiet.</div>
             </div>
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-3">
               <div className="feat-icon">🗓</div>
               <div className="feat-title">Meeting intelligence</div>
               <div className="feat-desc">Pre-meeting context on every person you're talking to — know the room before you walk in.</div>
             </div>
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-4">
               <div className="feat-icon">✍️</div>
               <div className="feat-title">Dynamic outreach</div>
               <div className="feat-desc">Tailored outreach generated from your own history and context, not generic templates.</div>
             </div>
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-5">
               <div className="feat-icon">🔀</div>
               <div className="feat-title">Multiple pipelines</div>
               <div className="feat-desc">Jobs, deals, gigs — manage every opportunity type in one place without losing clarity.</div>
             </div>
-            <div className="feat-card">
+            <div className="feat-card reveal-child delay-6">
               <div className="feat-icon">🔌</div>
               <div className="feat-title">Works with what you have</div>
               <div className="feat-desc">HubSpot, Salesforce, a CSV, or nothing at all. OM finds the opportunity in the mess.</div>
