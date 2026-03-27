@@ -41,9 +41,7 @@ export default function HomePage() {
           <h1>
             Every opportunity.
             <br />
-            <span className="dim">One clear</span>
-            <br />
-            next step.
+            <span className="dim">One clear</span> next step.
           </h1>
 
           <p className="hero-sub">
@@ -805,64 +803,18 @@ export default function HomePage() {
       {/* ── OM FEATURES ── */}
       <div className="light-alt reveal">
         <div className="wrap">
-          <div className="split">
+          {/* Top: title left, mini-UI right */}
+          <div className="split" style={{ marginBottom: 56 }}>
             <div>
               <div className="eyebrow">How OM works</div>
               <h2>
-                Opportunity management
+                Opportunity management that
                 <br />
-                that learns how you win
+                learns how you win
               </h2>
-              <p className="section-desc">
+              <p className="section-desc" style={{ marginBottom: 0 }}>
                 OM reads your activity — emails, meetings, deal history — and builds a live picture of which opportunities are real.
               </p>
-              <div className="feat-list">
-                <div className="feat-row">
-                  <div className="feat-icon">🎯</div>
-                  <div>
-                    <div className="feat-title">Clarity scoring</div>
-                    <div className="feat-desc">
-                      Every opportunity scored by engagement, timing, and fit — no more gut-feel prioritisation.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">🧠</div>
-                  <div>
-                    <div className="feat-title">Learns your patterns</div>
-                    <div className="feat-desc">
-                      OM gets sharper every week, learning who's genuinely interested vs. going quiet.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">🗓</div>
-                  <div>
-                    <div className="feat-title">Meeting intelligence</div>
-                    <div className="feat-desc">
-                      Pre-meeting context on every person you're talking to — know the room before you walk in.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">✍️</div>
-                  <div>
-                    <div className="feat-title">Dynamic outreach</div>
-                    <div className="feat-desc">
-                      Tailored outreach generated from your own history and context, not generic templates.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">🔀</div>
-                  <div>
-                    <div className="feat-title">Multiple pipelines</div>
-                    <div className="feat-desc">
-                      Jobs, deals, gigs — manage every opportunity type in one place without losing clarity.
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div>
               <div className="mini-ui">
@@ -911,6 +863,40 @@ export default function HomePage() {
                   <div className="m-score sr">1.4</div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Bottom: 6 features in 2x3 grid */}
+          <div className="feat-grid">
+            <div className="feat-card">
+              <div className="feat-icon">🎯</div>
+              <div className="feat-title">Clarity scoring</div>
+              <div className="feat-desc">Every opportunity scored by engagement, timing, and fit — no more gut-feel prioritisation.</div>
+            </div>
+            <div className="feat-card">
+              <div className="feat-icon">🧠</div>
+              <div className="feat-title">Learns your patterns</div>
+              <div className="feat-desc">OM gets sharper every week, learning who's genuinely interested vs. going quiet.</div>
+            </div>
+            <div className="feat-card">
+              <div className="feat-icon">🗓</div>
+              <div className="feat-title">Meeting intelligence</div>
+              <div className="feat-desc">Pre-meeting context on every person you're talking to — know the room before you walk in.</div>
+            </div>
+            <div className="feat-card">
+              <div className="feat-icon">✍️</div>
+              <div className="feat-title">Dynamic outreach</div>
+              <div className="feat-desc">Tailored outreach generated from your own history and context, not generic templates.</div>
+            </div>
+            <div className="feat-card">
+              <div className="feat-icon">🔀</div>
+              <div className="feat-title">Multiple pipelines</div>
+              <div className="feat-desc">Jobs, deals, gigs — manage every opportunity type in one place without losing clarity.</div>
+            </div>
+            <div className="feat-card">
+              <div className="feat-icon">🔌</div>
+              <div className="feat-title">Works with what you have</div>
+              <div className="feat-desc">HubSpot, Salesforce, a CSV, or nothing at all. OM finds the opportunity in the mess.</div>
             </div>
           </div>
         </div>

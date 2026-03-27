@@ -319,6 +319,16 @@ h2{
 .feat-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px}
 .feat-desc{font-size:13px;color:var(--mid);line-height:1.55}
 
+/* ── FEAT GRID (2x3) ── */
+.feat-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+}
+.feat-card{background:var(--surface);padding:24px}
+.feat-card .feat-icon{margin-bottom:12px}
+.feat-card .feat-title{margin-bottom:6px}
+
 /* ── MINI UI ── */
 .mini-ui{
   border:1px solid var(--border);border-radius:12px;overflow:hidden;
@@ -570,6 +580,7 @@ footer a.f-link:hover{color:var(--ink)}
   .section{padding:60px 20px}
   .team-grid{grid-template-columns:1fr}
   .values-list{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
   .post-grid{grid-template-columns:1fr}
   .newsletter{flex-direction:column;gap:24px}
   .nl-form{flex-direction:column;width:100%}
