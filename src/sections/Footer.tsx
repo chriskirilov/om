@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="f-left">
         <Link to="/" style={{display:'flex',alignItems:'center',gap:8,textDecoration:'none'}}>
           <FooterLogoIcon />
-          <span style={{fontFamily:"'Geist',monospace",fontSize:13,fontWeight:600,color:'var(--ink)',letterSpacing:'-0.01em'}}>p(om)</span>
+          <span style={{fontFamily:"'Geist',monospace",fontSize:13,fontWeight:600,color:'var(--ink)',letterSpacing:'-0.01em'}}>OM</span>
         </Link>
         <Link to="/about" className="f-link">About</Link>
         <Link to="/blog" className="f-link">Blog</Link>

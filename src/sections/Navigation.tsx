@@ -19,7 +19,7 @@ export default function Navigation() {
     <nav>
       <Link to="/" className="nav-logo">
         <LogoIcon />
-        <span style={{fontFamily:"'Geist',monospace",fontSize:15,fontWeight:600,color:'#fff',letterSpacing:'-0.01em'}}>p(om)</span>
+        <span style={{fontFamily:"'Geist',monospace",fontSize:15,fontWeight:600,color:'#fff',letterSpacing:'-0.01em'}}>OM</span>
       </Link>
       <div className="nav-right">
         <Link to="/about" className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}>About</Link>
@@ -27,13 +27,12 @@ export default function Navigation() {
         {isHome && (
           <>
             <a href="#signin" className="nav-link">Sign in</a>
-            <a href="#om-waitlist" className="nav-btn btn-ghost-nav">Join OM waitlist</a>
           </>
         )}
         {isHome ? (
-          <a href="#pom-signup" className="nav-btn btn-white">Get p(om) free</a>
+          <a href="#signup" className="nav-btn btn-white">Get OM free</a>
         ) : (
-          <Link to="/#pom-signup" className="nav-btn btn-white">Get p(om) free</Link>
+          <Link to="/#signup" className="nav-btn btn-white">Get OM free</Link>
         )}
       </div>
     </nav>

@@ -3,7 +3,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 export default function HomePage() {
   const [signInSuccess, setSignInSuccess] = useState(false);
   const [pomSuccess, setPomSuccess] = useState(false);
-  const [omSuccess, setOmSuccess] = useState(false);
+  const [fullSuccess, setFullSuccess] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -28,9 +28,9 @@ export default function HomePage() {
     setPomSuccess(true);
   }
 
-  function handleOmSubmit(e: FormEvent) {
+  function handleFullSubmit(e: FormEvent) {
     e.preventDefault();
-    setOmSuccess(true);
+    setFullSuccess(true);
   }
 
   return (
@@ -38,29 +38,6 @@ export default function HomePage() {
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-inner">
-          {/* floating label */}
-          <div
-            style={{
-              fontSize: 'clamp(15px,1.6vw,18px)',
-              fontWeight: 400,
-              color: 'rgba(255,255,255,0.2)',
-              letterSpacing: '0.01em',
-              marginBottom: 48,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 12,
-            }}
-          >
-            <svg width="20" height="1" viewBox="0 0 20 1">
-              <line x1="0" y1="0.5" x2="20" y2="0.5" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-            </svg>
-            A job. A deal. A gig. A company pipeline.
-            <svg width="20" height="1" viewBox="0 0 20 1">
-              <line x1="0" y1="0.5" x2="20" y2="0.5" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-            </svg>
-          </div>
-
           <h1>
             Every opportunity.
             <br />
@@ -70,13 +47,12 @@ export default function HomePage() {
           </h1>
 
           <p className="hero-sub">
-            An opportunity is an opportunity. OM manages all of them — personally with p(om), and at
-            the company layer with OM.
+            OM manages your opportunities — jobs, deals, gigs, pipeline. Know what's real. Act before it isn't.
           </p>
 
           <div className="hero-ctas">
-            <a href="#pom-signup" className="cta-main">
-              Start with p(om) — free
+            <a href="#signup" className="cta-main">
+              Get OM free
               <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
                 <path
                   d="M1 5h11M7.5 1l4 4-4 4"
@@ -87,8 +63,8 @@ export default function HomePage() {
                 />
               </svg>
             </a>
-            <a href="#om-waitlist" className="cta-ghost">
-              Running a company pipeline? →
+            <a href="#how-it-works" className="cta-ghost">
+              See how it works ↓
             </a>
           </div>
         </div>
@@ -751,33 +727,19 @@ export default function HomePage() {
       <div className="transition-band">
         <div className="transition-inner">
           <div className="ti-left">
-            <div className="ti-eyebrow">Two products. One system.</div>
+            <div className="ti-eyebrow">How it works</div>
             <div className="ti-text">
-              <strong>p(om)</strong> is personal opportunity management — for job seekers, AEs, and
-              early founders managing their own pipeline. <strong>OM</strong> is the company layer —
-              for Seed→Series A founders whose personal pipeline has become a company problem.
+              OM starts with your personal pipeline and scales to company-level intelligence when you're ready.
             </div>
-          </div>
-          <div className="ti-arrow">
-            p(om) → OM
-            <svg width="28" height="10" viewBox="0 0 28 10" fill="none">
-              <path
-                d="M1 5h26M22 1l5 4-5 4"
-                stroke="rgba(255,255,255,0.2)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
           </div>
         </div>
       </div>
 
-      {/* ── POM SECTION ── */}
-      <div className="light" id="pom">
+      {/* ── HOW IT WORKS SECTION ── */}
+      <div className="light" id="how-it-works">
         <div className="wrap reveal">
-          <div className="section-product-label spl-pom">
-            p(om) · Personal Opportunity Management
+          <div className="section-product-label spl-om">
+            OM · Opportunity Management
           </div>
           <h2>
             Not every opportunity
@@ -785,23 +747,21 @@ export default function HomePage() {
             deserves equal attention.
           </h2>
           <p className="section-desc">
-            Most people treat everything in their pipeline the same. p(om) doesn't. It learns who's
-            in the 5% ready to move now — and tells you exactly what to do with the rest while you
-            focus on what matters.
+            Most people treat every lead the same. OM learns which ones are in the 5% ready to move — and tells you what to do with the rest.
           </p>
 
           <div className="personas">
             <div className="p-pill active">All opportunities</div>
-            <div className="p-pill">🏢 Job seekers</div>
-            <div className="p-pill">💼 Account executives</div>
-            <div className="p-pill">⚡ Early-stage founders</div>
-            <div className="p-pill">🎯 Freelancers &amp; gigs</div>
+            <div className="p-pill">Job seekers</div>
+            <div className="p-pill">Account executives</div>
+            <div className="p-pill">Early-stage founders</div>
+            <div className="p-pill">Freelancers &amp; gigs</div>
           </div>
 
           <div className="tam-grid">
             <div className="tam-cell">
               <div className="tam-num">
-                5<span className="tam-pct-pom">%</span>
+                5<span className="tam-pct-om">%</span>
               </div>
               <div className="tam-label">Ready now</div>
               <div className="tam-desc">
@@ -818,7 +778,7 @@ export default function HomePage() {
               </div>
               <div className="tam-label">Needs nurturing</div>
               <div className="tam-desc">
-                Interested but not ready. p(om) tracks the right moment to re-engage — without
+                Interested but not ready. OM tracks the right moment to re-engage — without
                 pushing so hard you burn it.
               </div>
               <div className="tam-tag ta">
@@ -831,7 +791,7 @@ export default function HomePage() {
               </div>
               <div className="tam-label">Not right now</div>
               <div className="tam-desc">
-                Wrong timing, wrong fit, genuinely cold. Stop burning energy here. p(om) handles the
+                Wrong timing, wrong fit, genuinely cold. Stop burning energy here. OM handles the
                 watch so you don't have to.
               </div>
               <div className="tam-tag tf">
@@ -842,21 +802,19 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── POM FEATURES ── */}
+      {/* ── OM FEATURES ── */}
       <div className="light-alt reveal">
         <div className="wrap">
           <div className="split">
             <div>
-              <div className="eyebrow">How p(om) works</div>
+              <div className="eyebrow">How OM works</div>
               <h2>
                 Opportunity management
                 <br />
                 that learns how you win
               </h2>
               <p className="section-desc">
-                p(om) doesn't just rank your opportunities once. It learns your patterns — who
-                responds to you, what moves your deals, what a real opportunity looks like for you
-                specifically. It gets sharper every week.
+                OM reads your activity — emails, meetings, deal history — and builds a live picture of which opportunities are real.
               </p>
               <div className="feat-list">
                 <div className="feat-row">
@@ -864,8 +822,7 @@ export default function HomePage() {
                   <div>
                     <div className="feat-title">Clarity scoring</div>
                     <div className="feat-desc">
-                      Every opportunity scored by engagement, timing, and fit. No more gut-feel
-                      prioritisation across jobs, deals, and gigs.
+                      Every opportunity scored by engagement, timing, and fit — no more gut-feel prioritisation.
                     </div>
                   </div>
                 </div>
@@ -874,8 +831,7 @@ export default function HomePage() {
                   <div>
                     <div className="feat-title">Learns your patterns</div>
                     <div className="feat-desc">
-                      The more you use p(om), the more precise it gets. It learns who's genuinely
-                      interested vs. going quiet — for you specifically.
+                      OM gets sharper every week, learning who's genuinely interested vs. going quiet.
                     </div>
                   </div>
                 </div>
@@ -884,8 +840,7 @@ export default function HomePage() {
                   <div>
                     <div className="feat-title">Meeting intelligence</div>
                     <div className="feat-desc">
-                      Pre-meeting context on every person you're talking to. Know the room before you
-                      walk in.
+                      Pre-meeting context on every person you're talking to — know the room before you walk in.
                     </div>
                   </div>
                 </div>
@@ -894,8 +849,7 @@ export default function HomePage() {
                   <div>
                     <div className="feat-title">Dynamic outreach</div>
                     <div className="feat-desc">
-                      Tailored outreach generated from your own history and context. Not templates —
-                      your actual intelligence, applied.
+                      Tailored outreach generated from your own history and context, not generic templates.
                     </div>
                   </div>
                 </div>
@@ -904,8 +858,7 @@ export default function HomePage() {
                   <div>
                     <div className="feat-title">Multiple pipelines</div>
                     <div className="feat-desc">
-                      Job search, sales deals, freelance gigs — manage every opportunity type in one
-                      place without losing clarity between them.
+                      Jobs, deals, gigs — manage every opportunity type in one place without losing clarity.
                     </div>
                   </div>
                 </div>
@@ -915,7 +868,7 @@ export default function HomePage() {
               <div className="mini-ui">
                 <div className="mini-header">
                   <span className="mh-label">Opportunities · Today</span>
-                  <span className="mh-badge-pom">p(om)</span>
+                  <span className="mh-badge-om">OM</span>
                 </div>
                 <div className="mini-row">
                   <div className="m-dot dg"></div>
@@ -956,219 +909,6 @@ export default function HomePage() {
                     <div className="m-sub">Sale · cold · let breathe</div>
                   </div>
                   <div className="m-score sr">1.4</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── OM DIVIDER ── */}
-      <div className="om-divider reveal" id="om">
-        <div className="om-divider-inner">
-          <div className="od-left">
-            <div className="od-product-tag">OM · Opportunity Management</div>
-            <div className="od-title">
-              Your CRM says $1M in pipeline.
-              <br />
-              <span className="dim">What's actually alive?</span>
-            </div>
-            <p className="od-desc">
-              When your personal opportunities become a company pipeline — when you're a
-              Seed→Series A founder and you can't tell which deals are real on Monday morning —
-              that's when you need OM. The operating layer for your GTM, not another tool sitting on
-              top of it.
-            </p>
-          </div>
-          <div className="od-right">
-            <div className="od-stat">
-              <div>
-                <div className="od-stat-num">5%</div>
-                <div className="od-stat-label">
-                  of your pipeline
-                  <br />
-                  is ready to close now
-                </div>
-              </div>
-            </div>
-            <div className="od-stat">
-              <div>
-                <div className="od-stat-num">~12k</div>
-                <div className="od-stat-label">
-                  Seed→Series A founders
-                  <br />
-                  with this exact problem
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── OM TAM ── */}
-      <div className="light reveal">
-        <div className="wrap">
-          <div className="section-product-label spl-om">
-            OM · Company Opportunity Management
-          </div>
-          <h2>
-            "My CRM says I have $1M in pipeline.
-            <br />I have no idea which deals are actually alive."
-          </h2>
-          <p className="section-desc">
-            Every Seed→Series A founder doing founder-led sales feels this on Monday morning. OM
-            fixes it. It scores every opportunity in your pipeline by how real it actually is — and
-            tells you exactly where to put your energy this week.
-          </p>
-
-          <div className="tam-grid">
-            <div className="tam-cell">
-              <div className="tam-num">
-                5<span className="tam-pct-om">%</span>
-              </div>
-              <div className="tam-label">Ready to close</div>
-              <div className="tam-desc">
-                Active engagement, confirmed budget, real stakeholders. Live opportunities. Act this
-                week or lose them.
-              </div>
-              <div className="tam-tag tg">
-                <div className="td"></div>Close now
-              </div>
-            </div>
-            <div className="tam-cell">
-              <div className="tam-num">
-                35<span style={{ fontSize: 14, color: 'var(--mid)' }}>%</span>
-              </div>
-              <div className="tam-label">Real but not ready</div>
-              <div className="tam-desc">
-                Genuine interest, wrong timing. These opportunities need to stay warm — not pushed.
-                OM tracks exactly when the window opens.
-              </div>
-              <div className="tam-tag ta">
-                <div className="td"></div>Nurture, don't push
-              </div>
-            </div>
-            <div className="tam-cell">
-              <div className="tam-num">
-                60<span style={{ fontSize: 14, color: 'var(--mid)' }}>%</span>
-              </div>
-              <div className="tam-label">Dead or stale</div>
-              <div className="tam-desc">
-                These are the deals clogging your CRM and your head on Monday morning. OM identifies
-                them so you stop wasting cycles.
-              </div>
-              <div className="tam-tag tf">
-                <div className="td"></div>Stop burning energy
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── OM FEATURES ── */}
-      <div className="light-alt reveal">
-        <div className="wrap">
-          <div className="split split-r">
-            <div>
-              <div className="eyebrow">How OM works</div>
-              <h2>
-                Opportunity management that
-                <br />
-                learns your pipeline over time
-              </h2>
-              <p className="section-desc">
-                OM isn't a dashboard you maintain. It reads the activity that already exists — email
-                threads, calendar meetings, deal history — and builds a live picture of which
-                opportunities are real. No CRM required to start.
-              </p>
-              <div className="feat-list">
-                <div className="feat-row">
-                  <div className="feat-icon">🎯</div>
-                  <div>
-                    <div className="feat-title">Opportunity scoring</div>
-                    <div className="feat-desc">
-                      Every deal scored by how real the opportunity actually is — engagement depth,
-                      stakeholder activity, timing. Not by what your CRM stage says.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">📬</div>
-                  <div>
-                    <div className="feat-title">One action per opportunity</div>
-                    <div className="feat-desc">
-                      Not a list of insights to interpret. One clear next step per deal, delivered to
-                      your inbox weekly. Built for founders, not analysts.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">🧠</div>
-                  <div>
-                    <div className="feat-title">Learns what your wins look like</div>
-                    <div className="feat-desc">
-                      OM learns the patterns specific to your pipeline — what a real opportunity
-                      looks like for your product, your market, your cycle. Improves continuously.
-                    </div>
-                  </div>
-                </div>
-                <div className="feat-row">
-                  <div className="feat-icon">🔌</div>
-                  <div>
-                    <div className="feat-title">Works with what you already have</div>
-                    <div className="feat-desc">
-                      HubSpot, Salesforce, a CSV, or nothing at all. OM doesn't require a clean CRM.
-                      It finds the opportunity in the mess.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="mini-ui">
-                <div className="mini-header">
-                  <span className="mh-label">Pipeline · This week</span>
-                  <span className="mh-badge-om">OM</span>
-                </div>
-                <div className="mini-row">
-                  <div className="m-dot dg"></div>
-                  <div className="m-main">
-                    <div className="m-name">Lucia Protocol · $24k</div>
-                    <div className="m-sub">Ready · close this week</div>
-                  </div>
-                  <div className="m-score sg">9.4</div>
-                </div>
-                <div className="mini-row">
-                  <div className="m-dot dg"></div>
-                  <div className="m-main">
-                    <div className="m-name">FinTech Co · $18k</div>
-                    <div className="m-sub">Building · 2 stakeholders added</div>
-                  </div>
-                  <div className="m-score sg">7.9</div>
-                </div>
-                <div className="mini-row">
-                  <div className="m-dot da"></div>
-                  <div className="m-main">
-                    <div className="m-name">SaaS Corp · $12k</div>
-                    <div className="m-sub">Cooling · nurture champion</div>
-                  </div>
-                  <div className="m-score sa">4.6</div>
-                </div>
-                <div className="mini-row">
-                  <div className="m-dot da"></div>
-                  <div className="m-main">
-                    <div className="m-name">StartupX · $9k</div>
-                    <div className="m-sub">Not in window · let breathe</div>
-                  </div>
-                  <div className="m-score sa">3.8</div>
-                </div>
-                <div className="mini-row">
-                  <div className="m-dot dr"></div>
-                  <div className="m-main">
-                    <div className="m-name">Agency · $8k</div>
-                    <div className="m-sub">Dead · 21d no response</div>
-                  </div>
-                  <div className="m-score sr">1.2</div>
                 </div>
               </div>
             </div>
@@ -1235,7 +975,7 @@ export default function HomePage() {
                 lineHeight: 1.7,
               }}
             >
-              Sign in to your p(om) or OM account to pick up where you left off.
+              Sign in to your OM account to pick up where you left off.
             </p>
           </div>
           <div
@@ -1257,20 +997,6 @@ export default function HomePage() {
             >
               <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>Sign in</span>
               <div style={{ display: 'flex', gap: 6 }}>
-                <div
-                  style={{
-                    fontFamily: "'Geist',monospace",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: 'var(--pom-accent)',
-                    background: 'var(--pom-lt)',
-                    border: '1px solid var(--pom-bd)',
-                    borderRadius: 5,
-                    padding: '2px 7px',
-                  }}
-                >
-                  p(om)
-                </div>
                 <div
                   style={{
                     fontSize: 11,
@@ -1395,9 +1121,9 @@ export default function HomePage() {
                 >
                   Don't have an account?{' '}
                   <a
-                    href="#pom-signup"
+                    href="#signup"
                     style={{
-                      color: 'var(--pom-accent)',
+                      color: 'var(--om-accent)',
                       textDecoration: 'none',
                       fontWeight: 500,
                     }}
@@ -1444,14 +1170,14 @@ export default function HomePage() {
       </div>
 
       {/* ── PRICING / SIGNUP ── */}
-      <div className="light reveal" id="pom-signup">
+      <div className="light reveal" id="signup">
         <div style={{ maxWidth: 1040, margin: '0 auto', padding: '88px 40px 48px' }}>
           {/* header */}
           <div className="eyebrow">Pricing</div>
           <h2 style={{ marginBottom: 12 }}>
-            Start with p(om).
+            Start free.
             <br />
-            Graduate to OM.
+            Upgrade when ready.
           </h2>
           <p
             style={{
@@ -1463,40 +1189,38 @@ export default function HomePage() {
               marginBottom: 52,
             }}
           >
-            p(om) is where every opportunity begins. When those opportunities become a company
-            pipeline that needs managing at scale, OM unlocks.
+            OM is free to start. When you need scoring, outreach, and full pipeline intelligence, upgrade to OM Full.
           </p>
 
-          {/* three tier table */}
+          {/* two tier table */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
+              gridTemplateColumns: '1fr 1fr',
               gap: 1,
               background: 'var(--border)',
               border: '1px solid var(--border)',
               borderRadius: 14,
               overflow: 'hidden',
-              marginBottom: 20,
+              marginBottom: 56,
             }}
           >
-            {/* p(om) Free */}
+            {/* OM Free */}
             <div style={{ background: 'var(--white)', padding: '28px 24px' }}>
               <div
                 style={{
-                  fontFamily: "'Geist',monospace",
                   fontSize: 11,
                   fontWeight: 600,
-                  color: 'var(--pom-accent)',
-                  background: 'var(--pom-lt)',
-                  border: '1px solid var(--pom-bd)',
+                  color: 'var(--om-accent)',
+                  background: 'var(--om-lt)',
+                  border: '1px solid var(--om-bd)',
                   borderRadius: 5,
                   padding: '2px 8px',
                   display: 'inline-block',
                   marginBottom: 16,
                 }}
               >
-                p(om) · Free
+                OM · Free
               </div>
               <div
                 style={{
@@ -1590,7 +1314,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* p(om) Full - highlighted */}
+            {/* OM Full - highlighted */}
             <div style={{ background: 'var(--white)', padding: '28px 24px', position: 'relative' as const }}>
               <div
                 style={{
@@ -1599,30 +1323,29 @@ export default function HomePage() {
                   left: 0,
                   right: 0,
                   height: 3,
-                  background: 'var(--pom-accent)',
+                  background: 'var(--om-accent)',
                 }}
               ></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 16 }}>
                 <div
                   style={{
-                    fontFamily: "'Geist',monospace",
                     fontSize: 11,
                     fontWeight: 600,
-                    color: 'var(--pom-accent)',
-                    background: 'var(--pom-lt)',
-                    border: '1px solid var(--pom-bd)',
+                    color: 'var(--om-accent)',
+                    background: 'var(--om-lt)',
+                    border: '1px solid var(--om-bd)',
                     borderRadius: 5,
                     padding: '2px 8px',
                   }}
                 >
-                  p(om) · Full
+                  OM · Full
                 </div>
                 <div
                   style={{
                     fontSize: 10,
                     fontWeight: 700,
                     color: '#fff',
-                    background: 'var(--pom-accent)',
+                    background: 'var(--om-accent)',
                     borderRadius: 4,
                     padding: '2px 7px',
                     letterSpacing: '0.02em',
@@ -1723,185 +1446,11 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
-            {/* OM Company */}
-            <div style={{ background: 'var(--ink)', padding: '28px 24px', position: 'relative' as const }}>
-              <div
-                style={{
-                  position: 'absolute' as const,
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 3,
-                  background: 'var(--om-accent)',
-                }}
-              ></div>
-              <div
-                style={{
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: 'var(--om-accent)',
-                  background: 'var(--om-lt)',
-                  border: '1px solid var(--om-bd)',
-                  borderRadius: 5,
-                  padding: '2px 8px',
-                  display: 'inline-block',
-                  marginBottom: 16,
-                }}
-              >
-                OM · Company
-              </div>
-              <div
-                style={{
-                  fontSize: 28,
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                  color: '#fff',
-                  lineHeight: 1,
-                  marginBottom: 4,
-                }}
-              >
-                Waitlist
-              </div>
-              <div
-                style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', marginBottom: 20 }}
-              >
-                When pipeline becomes a company problem
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  Everything in p(om)
-                </div>
-                <div
-                  style={{
-                    height: 1,
-                    background: 'rgba(255,255,255,0.07)',
-                    margin: '4px 0',
-                  }}
-                ></div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  Company pipeline management
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  Deal health scoring
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  One action per deal, to your inbox
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  CRM integration &amp; activity sync
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)',
-                  }}
-                >
-                  <span style={{ color: 'var(--om-accent)', flexShrink: 0, marginTop: 1 }}>
-                    ✓
-                  </span>
-                  Learns your GTM over time
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* progression label */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              fontSize: 12,
-              color: 'var(--faint)',
-              marginBottom: 56,
-            }}
-          >
-            <span>Start free</span>
-            <svg width="20" height="8" viewBox="0 0 20 8" fill="none">
-              <path
-                d="M1 4h18M15 1l4 3-4 3"
-                stroke="#C8C8D4"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span>Unlock full p(om) at $50/mo</span>
-            <svg width="20" height="8" viewBox="0 0 20 8" fill="none">
-              <path
-                d="M1 4h18M15 1l4 3-4 3"
-                stroke="#C8C8D4"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span>Graduate to OM when pipeline scales</span>
           </div>
 
           {/* two signup forms side by side */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-            {/* p(om) signup */}
+            {/* OM Free signup */}
             <div
               style={{
                 border: '1px solid var(--border)',
@@ -1920,16 +1469,15 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>
-                  Get started with p(om)
+                  Get started with OM
                 </div>
                 <div
                   style={{
-                    fontFamily: "'Geist',monospace",
                     fontSize: 11,
                     fontWeight: 600,
-                    color: 'var(--pom-accent)',
-                    background: 'var(--pom-lt)',
-                    border: '1px solid var(--pom-bd)',
+                    color: 'var(--om-accent)',
+                    background: 'var(--om-lt)',
+                    border: '1px solid var(--om-bd)',
                     borderRadius: 5,
                     padding: '2px 8px',
                   }}
@@ -1984,188 +1532,83 @@ export default function HomePage() {
               )}
             </div>
 
-            {/* OM waitlist */}
+            {/* OM Full signup */}
             <div
               style={{
-                border: '1px solid #1a1a2e',
+                border: '1px solid var(--border)',
                 borderRadius: 12,
                 overflow: 'hidden',
-                background: 'var(--ink)',
               }}
-              id="om-waitlist"
             >
               <div
                 style={{
                   padding: '24px 24px 20px',
-                  borderBottom: '1px solid rgba(255,255,255,0.07)',
+                  background: 'var(--white)',
+                  borderBottom: '1px solid var(--border)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                 }}
               >
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#fff' }}>
-                  Join the OM waitlist
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>
+                  Get OM Full
                 </div>
                 <div
                   style={{
                     fontSize: 11,
                     fontWeight: 600,
-                    color: 'var(--amber)',
-                    background: 'rgba(217,119,6,0.1)',
-                    border: '1px solid rgba(217,119,6,0.2)',
+                    color: 'var(--om-accent)',
+                    background: 'var(--om-lt)',
+                    border: '1px solid var(--om-bd)',
                     borderRadius: 5,
                     padding: '2px 8px',
                   }}
                 >
-                  Limited spots
+                  $50/mo
                 </div>
               </div>
-              {!omSuccess ? (
-                <div style={{ padding: '20px 24px 24px' }}>
-                  <form onSubmit={handleOmSubmit}>
+              {!fullSuccess ? (
+                <div style={{ padding: '20px 24px 24px', background: 'var(--surface)' }}>
+                  <form onSubmit={handleFullSubmit}>
                     <div className="field">
-                      <label
-                        style={{
-                          display: 'block',
-                          fontSize: 12,
-                          fontWeight: 500,
-                          color: 'rgba(255,255,255,0.35)',
-                          marginBottom: 5,
-                        }}
-                      >
-                        Full name
-                      </label>
+                      <label className="field-label">Full name</label>
                       <input
-                        style={{
-                          width: '100%',
-                          height: 40,
-                          padding: '0 12px',
-                          background: 'rgba(255,255,255,0.06)',
-                          border: '1px solid rgba(255,255,255,0.12)',
-                          borderRadius: 8,
-                          fontFamily: "'Geist',sans-serif",
-                          fontSize: 14,
-                          color: '#fff',
-                          outline: 'none',
-                          transition: 'border-color 0.15s',
-                        }}
+                        className="field-input"
                         type="text"
                         placeholder="Your name"
                         required
                       />
                     </div>
                     <div className="field">
-                      <label
-                        style={{
-                          display: 'block',
-                          fontSize: 12,
-                          fontWeight: 500,
-                          color: 'rgba(255,255,255,0.35)',
-                          marginBottom: 5,
-                        }}
-                      >
-                        Work email
-                      </label>
+                      <label className="field-label">Email address</label>
                       <input
-                        style={{
-                          width: '100%',
-                          height: 40,
-                          padding: '0 12px',
-                          background: 'rgba(255,255,255,0.06)',
-                          border: '1px solid rgba(255,255,255,0.12)',
-                          borderRadius: 8,
-                          fontFamily: "'Geist',sans-serif",
-                          fontSize: 14,
-                          color: '#fff',
-                          outline: 'none',
-                          transition: 'border-color 0.15s',
-                        }}
+                        className="field-input"
                         type="email"
                         placeholder="you@company.com"
                         required
                       />
                     </div>
-                    <button
-                      type="submit"
-                      style={{
-                        width: '100%',
-                        height: 42,
-                        marginTop: 18,
-                        background: 'rgba(255,255,255,0.08)',
-                        border: '1px solid rgba(255,255,255,0.14)',
-                        borderRadius: 8,
-                        fontFamily: "'Geist',sans-serif",
-                        fontSize: 14,
-                        fontWeight: 600,
-                        color: '#fff',
-                        cursor: 'pointer',
-                        transition: 'background 0.15s',
-                      }}
-                    >
-                      Request a spot on OM
+                    <button type="submit" className="submit-btn submit-pom">
+                      Start OM Full
                     </button>
                   </form>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 6,
-                      marginTop: 12,
-                      fontSize: 12,
-                      color: 'rgba(255,255,255,0.22)',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        background: 'var(--amber)',
-                        boxShadow: '0 0 6px rgba(217,119,6,0.4)',
-                        flexShrink: 0,
-                      }}
-                    ></div>
-                    Seed→Series A founders only · we'll reach out personally
+                  <div className="form-note">
+                    <div className="note-dot nd-open"></div>
+                    $50/mo · cancel anytime
                   </div>
                 </div>
               ) : (
-                <div style={{ padding: '40px 24px', textAlign: 'center' as const }}>
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '50%',
-                      background: 'var(--om-lt)',
-                      border: '1px solid var(--om-bd)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto 14px',
-                      fontSize: 18,
-                      color: 'var(--om-accent)',
-                    }}
-                  >
-                    ✓
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 600,
-                      color: '#fff',
-                      marginBottom: 6,
-                    }}
-                  >
-                    You're on the list
-                  </div>
-                  <p
-                    style={{
-                      fontSize: 13,
-                      color: 'rgba(255,255,255,0.35)',
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    We'll reach out personally. We work with a small number of founders at a time —
-                    if this is the right fit, we'll move fast.
+                <div
+                  style={{
+                    padding: '32px 24px',
+                    textAlign: 'center' as const,
+                    background: 'var(--surface)',
+                  }}
+                >
+                  <div className="ss-icon ss-icon-pom">✓</div>
+                  <div className="ss-title">You're in</div>
+                  <p className="ss-desc">
+                    Welcome to OM Full. Check your inbox for next steps.
                   </p>
                 </div>
               )}

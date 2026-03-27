@@ -76,7 +76,7 @@ export default function BlogPage() {
         {/* POST GRID */}
         <div className="post-grid reveal">
           <a className="post-card" href="#">
-            <div className="post-tag tag-pom">p(om) &middot; Personal</div>
+            <div className="post-tag tag-om">OM &middot; Personal</div>
             <div className="post-title">
               The 5% rule: why most of your opportunities aren&rsquo;t actually
               opportunities
@@ -115,7 +115,7 @@ export default function BlogPage() {
           </a>
 
           <a className="post-card" href="#">
-            <div className="post-tag tag-pom">p(om) &middot; Personal</div>
+            <div className="post-tag tag-om">OM &middot; Personal</div>
             <div className="post-title">
               Why job applications and sales deals are the same problem
             </div>
