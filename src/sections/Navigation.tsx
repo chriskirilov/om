@@ -17,15 +17,10 @@ export default function Navigation() {
       <div className="nav-right">
         <Link to="/about" className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}>About</Link>
         <Link to="/blog" className={`nav-link${location.pathname === '/blog' ? ' active' : ''}`}>Blog</Link>
-        {isHome && (
-          <>
-            <a href="#signin" className="nav-link">Sign in</a>
-          </>
-        )}
         {isHome ? (
-          <a href="#signup" className="nav-btn btn-white">Get OM free</a>
+          <a href="#waitlist" className="nav-btn btn-white">Join waitlist</a>
         ) : (
-          <Link to="/#signup" className="nav-btn btn-white">Get OM free</Link>
+          <Link to="/#waitlist" className="nav-btn btn-white">Join waitlist</Link>
         )}
       </div>
     </nav>

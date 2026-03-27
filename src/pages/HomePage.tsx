@@ -1,9 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 
 export default function HomePage() {
-  const [signInSuccess, setSignInSuccess] = useState(false);
-  const [pomSuccess, setPomSuccess] = useState(false);
-  const [fullSuccess, setFullSuccess] = useState(false);
+  const [waitlistSuccess, setWaitlistSuccess] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -18,19 +16,9 @@ export default function HomePage() {
     return () => obs.disconnect();
   }, []);
 
-  function handleSignIn(e: FormEvent) {
+  function handleWaitlist(e: FormEvent) {
     e.preventDefault();
-    setSignInSuccess(true);
-  }
-
-  function handlePomSubmit(e: FormEvent) {
-    e.preventDefault();
-    setPomSuccess(true);
-  }
-
-  function handleFullSubmit(e: FormEvent) {
-    e.preventDefault();
-    setFullSuccess(true);
+    setWaitlistSuccess(true);
   }
 
   return (
@@ -49,8 +37,8 @@ export default function HomePage() {
           </p>
 
           <div className="hero-ctas">
-            <a href="#signup" className="cta-main">
-              Get OM free
+            <a href="#waitlist" className="cta-main">
+              Join the waitlist
               <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
                 <path
                   d="M1 5h11M7.5 1l4 4-4 4"
@@ -902,263 +890,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── SIGN IN ── */}
-      <div
-        style={{
-          background: 'var(--surface)',
-          borderTop: '1px solid var(--border)',
-          borderBottom: '1px solid var(--border)',
-        }}
-        id="signin"
-      >
-        <div
-          style={{
-            maxWidth: 1040,
-            margin: '0 auto',
-            padding: '64px 40px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 80,
-            alignItems: 'center',
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: '0.07em',
-                textTransform: 'uppercase' as const,
-                color: 'var(--faint)',
-                marginBottom: 14,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-              }}
-            >
-              <span
-                style={{ display: 'block', width: 20, height: 1, background: 'var(--border)' }}
-              ></span>
-              Already have an account
-            </div>
-            <h2
-              style={{
-                fontSize: 'clamp(22px,3vw,32px)',
-                fontWeight: 700,
-                letterSpacing: '-0.03em',
-                lineHeight: 1.12,
-                color: 'var(--ink)',
-                marginBottom: 10,
-              }}
-            >
-              Welcome back.
-            </h2>
-            <p
-              style={{
-                fontSize: 15,
-                fontWeight: 300,
-                color: 'var(--mid)',
-                lineHeight: 1.7,
-              }}
-            >
-              Sign in to your OM account to pick up where you left off.
-            </p>
-          </div>
-          <div
-            style={{
-              background: 'var(--white)',
-              border: '1px solid var(--border)',
-              borderRadius: 12,
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                padding: '20px 24px 16px',
-                borderBottom: '1px solid var(--border)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>Sign in</span>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: 'var(--om-accent)',
-                    background: 'var(--om-lt)',
-                    border: '1px solid var(--om-bd)',
-                    borderRadius: 5,
-                    padding: '2px 7px',
-                  }}
-                >
-                  OM
-                </div>
-              </div>
-            </div>
-            {!signInSuccess ? (
-              <div style={{ padding: '20px 24px 24px' }}>
-                <form onSubmit={handleSignIn}>
-                  <div style={{ marginBottom: 13 }}>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: 'var(--mid)',
-                        marginBottom: 5,
-                      }}
-                    >
-                      Email address
-                    </label>
-                    <input
-                      style={{
-                        width: '100%',
-                        height: 40,
-                        padding: '0 12px',
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
-                        borderRadius: 8,
-                        fontFamily: "'Geist',sans-serif",
-                        fontSize: 14,
-                        color: 'var(--ink)',
-                        outline: 'none',
-                        transition: 'border-color 0.15s, box-shadow 0.15s',
-                      }}
-                      type="email"
-                      placeholder="you@company.com"
-                      required
-                    />
-                  </div>
-                  <div style={{ marginBottom: 4 }}>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: 'var(--mid)',
-                        marginBottom: 5,
-                      }}
-                    >
-                      Password
-                    </label>
-                    <input
-                      style={{
-                        width: '100%',
-                        height: 40,
-                        padding: '0 12px',
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
-                        borderRadius: 8,
-                        fontFamily: "'Geist',sans-serif",
-                        fontSize: 14,
-                        color: 'var(--ink)',
-                        outline: 'none',
-                        transition: 'border-color 0.15s, box-shadow 0.15s',
-                      }}
-                      type="password"
-                      placeholder="••••••••"
-                      required
-                    />
-                  </div>
-                  <div style={{ textAlign: 'right' as const, marginBottom: 18 }}>
-                    <a
-                      href="#"
-                      style={{
-                        fontSize: 12,
-                        color: 'var(--faint)',
-                        textDecoration: 'none',
-                        transition: 'color 0.15s',
-                      }}
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                  <button
-                    type="submit"
-                    style={{
-                      width: '100%',
-                      height: 42,
-                      background: 'var(--ink)',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 8,
-                      fontFamily: "'Geist',sans-serif",
-                      fontSize: 14,
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'all 0.15s',
-                    }}
-                  >
-                    Sign in to your account
-                  </button>
-                </form>
-                <div
-                  style={{
-                    marginTop: 16,
-                    paddingTop: 16,
-                    borderTop: '1px solid var(--border)',
-                    textAlign: 'center' as const,
-                    fontSize: 12,
-                    color: 'var(--faint)',
-                  }}
-                >
-                  Don't have an account?{' '}
-                  <a
-                    href="#signup"
-                    style={{
-                      color: 'var(--om-accent)',
-                      textDecoration: 'none',
-                      fontWeight: 500,
-                    }}
-                  >
-                    Get started free →
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <div style={{ padding: '32px 24px', textAlign: 'center' as const }}>
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: '50%',
-                    background: 'var(--green-lt)',
-                    border: '1px solid rgba(5,150,105,0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 14px',
-                    fontSize: 18,
-                  }}
-                >
-                  ✓
-                </div>
-                <div
-                  style={{
-                    fontSize: 15,
-                    fontWeight: 600,
-                    color: 'var(--ink)',
-                    marginBottom: 6,
-                  }}
-                >
-                  Signing you in
-                </div>
-                <p style={{ fontSize: 13, color: 'var(--mid)' }}>
-                  Redirecting to your dashboard...
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* ── PRICING / SIGNUP ── */}
-      <div className="light reveal" id="signup">
+      {/* ── PRICING + WAITLIST ── */}
+      <div className="light reveal" id="waitlist">
         <div style={{ maxWidth: 1040, margin: '0 auto', padding: '88px 40px 48px' }}>
-          {/* header */}
           <div className="eyebrow">Pricing</div>
           <h2 style={{ marginBottom: 12 }}>
             Start free.
@@ -1178,7 +912,7 @@ export default function HomePage() {
             OM is free to start. When you need scoring, outreach, and full pipeline intelligence, upgrade to OM Full.
           </p>
 
-          {/* two tier table */}
+          {/* pricing table */}
           <div
             style={{
               display: 'grid',
@@ -1206,7 +940,7 @@ export default function HomePage() {
                   marginBottom: 16,
                 }}
               >
-                OM · Free
+                OM &middot; Free
               </div>
               <div
                 style={{
@@ -1224,94 +958,25 @@ export default function HomePage() {
                 Start immediately
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Browse &amp; track opportunities
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Basic pipeline management
-                </div>
-                <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }}></div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--faint)',
-                  }}
-                >
-                  <span style={{ color: 'var(--border)', flexShrink: 0, marginTop: 1 }}>—</span>
-                  Opportunity ranking
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--faint)',
-                  }}
-                >
-                  <span style={{ color: 'var(--border)', flexShrink: 0, marginTop: 1 }}>—</span>
-                  Resume generation
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--faint)',
-                  }}
-                >
-                  <span style={{ color: 'var(--border)', flexShrink: 0, marginTop: 1 }}>—</span>
-                  Deep profile analysis
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--faint)',
-                  }}
-                >
-                  <span style={{ color: 'var(--border)', flexShrink: 0, marginTop: 1 }}>—</span>
-                  Automated applications
-                </div>
+                {['Browse & track opportunities', 'Basic pipeline management'].map((t) => (
+                  <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: 'var(--mid)' }}>
+                    <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>&#10003;</span>
+                    {t}
+                  </div>
+                ))}
+                <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
+                {['Opportunity ranking', 'Resume generation', 'Deep profile analysis', 'Automated applications'].map((t) => (
+                  <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: 'var(--faint)' }}>
+                    <span style={{ color: 'var(--border)', flexShrink: 0, marginTop: 1 }}>&mdash;</span>
+                    {t}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* OM Full - highlighted */}
+            {/* OM Full */}
             <div style={{ background: 'var(--white)', padding: '28px 24px', position: 'relative' as const }}>
-              <div
-                style={{
-                  position: 'absolute' as const,
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 3,
-                  background: 'var(--om-accent)',
-                }}
-              ></div>
+              <div style={{ position: 'absolute' as const, top: 0, left: 0, right: 0, height: 3, background: 'var(--om-accent)' }} />
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 16 }}>
                 <div
                   style={{
@@ -1324,7 +989,7 @@ export default function HomePage() {
                     padding: '2px 8px',
                   }}
                 >
-                  OM · Full
+                  OM &middot; Full
                 </div>
                 <div
                   style={{
@@ -1357,248 +1022,52 @@ export default function HomePage() {
                 Everything you need to win
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: 'var(--mid)' }}>
+                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>&#10003;</span>
                   Everything in free
                 </div>
-                <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }}></div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Opportunity ranking &amp; scores
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Resume generation per opportunity
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Deep profile &amp; background analysis
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Relevant fit discovery
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 8,
-                    fontSize: 13,
-                    color: 'var(--mid)',
-                  }}
-                >
-                  <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  Automated job applications
-                </div>
+                <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
+                {['Opportunity ranking & scores', 'Resume generation per opportunity', 'Deep profile & background analysis', 'Relevant fit discovery', 'Automated job applications'].map((t) => (
+                  <div key={t} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: 'var(--mid)' }}>
+                    <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: 1 }}>&#10003;</span>
+                    {t}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* two signup forms side by side */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-            {/* OM Free signup */}
-            <div
-              style={{
-                border: '1px solid var(--border)',
-                borderRadius: 12,
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                style={{
-                  padding: '24px 24px 20px',
-                  background: 'var(--white)',
-                  borderBottom: '1px solid var(--border)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>
-                  Get started with OM
+          {/* single waitlist form */}
+          <div style={{ maxWidth: 480, margin: '0 auto', textAlign: 'center' as const }}>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: 'var(--ink)', marginBottom: 8 }}>
+              Get early access to OM
+            </h3>
+            <p style={{ fontSize: 14, color: 'var(--mid)', marginBottom: 28 }}>
+              We're onboarding design partners now. Join the waitlist and we'll set you up personally.
+            </p>
+            {!waitlistSuccess ? (
+              <form onSubmit={handleWaitlist} style={{ maxWidth: 400, margin: '0 auto' }}>
+                <div className="field">
+                  <input className="field-input" type="text" placeholder="Your name" required />
                 </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: 'var(--om-accent)',
-                    background: 'var(--om-lt)',
-                    border: '1px solid var(--om-bd)',
-                    borderRadius: 5,
-                    padding: '2px 8px',
-                  }}
-                >
-                  Free
+                <div className="field">
+                  <input className="field-input" type="email" placeholder="you@company.com" required />
                 </div>
+                <button type="submit" className="submit-btn submit-pom" style={{ width: '100%' }}>
+                  Join the waitlist
+                </button>
+                <div className="form-note" style={{ justifyContent: 'center' }}>
+                  <div className="note-dot nd-open" />
+                  Free &middot; no credit card &middot; we'll reach out personally
+                </div>
+              </form>
+            ) : (
+              <div>
+                <div className="ss-icon ss-icon-pom">&#10003;</div>
+                <div className="ss-title">You're on the list</div>
+                <p className="ss-desc">We'll reach out soon to get you set up.</p>
               </div>
-              {!pomSuccess ? (
-                <div style={{ padding: '20px 24px 24px', background: 'var(--surface)' }}>
-                  <form onSubmit={handlePomSubmit}>
-                    <div className="field">
-                      <label className="field-label">Full name</label>
-                      <input
-                        className="field-input"
-                        type="text"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-                    <div className="field">
-                      <label className="field-label">Email address</label>
-                      <input
-                        className="field-input"
-                        type="email"
-                        placeholder="you@company.com"
-                        required
-                      />
-                    </div>
-                    <button type="submit" className="submit-btn submit-pom">
-                      Create free account
-                    </button>
-                  </form>
-                  <div className="form-note">
-                    <div className="note-dot nd-open"></div>
-                    Free · open access · no credit card
-                  </div>
-                </div>
-              ) : (
-                <div
-                  style={{
-                    padding: '32px 24px',
-                    textAlign: 'center' as const,
-                    background: 'var(--surface)',
-                  }}
-                >
-                  <div className="ss-icon ss-icon-pom">✓</div>
-                  <div className="ss-title">You're in</div>
-                  <p className="ss-desc">
-                    Access link on its way. Something's already waiting for your attention.
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* OM Full signup */}
-            <div
-              style={{
-                border: '1px solid var(--border)',
-                borderRadius: 12,
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                style={{
-                  padding: '24px 24px 20px',
-                  background: 'var(--white)',
-                  borderBottom: '1px solid var(--border)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>
-                  Get OM Full
-                </div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: 'var(--om-accent)',
-                    background: 'var(--om-lt)',
-                    border: '1px solid var(--om-bd)',
-                    borderRadius: 5,
-                    padding: '2px 8px',
-                  }}
-                >
-                  $50/mo
-                </div>
-              </div>
-              {!fullSuccess ? (
-                <div style={{ padding: '20px 24px 24px', background: 'var(--surface)' }}>
-                  <form onSubmit={handleFullSubmit}>
-                    <div className="field">
-                      <label className="field-label">Full name</label>
-                      <input
-                        className="field-input"
-                        type="text"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-                    <div className="field">
-                      <label className="field-label">Email address</label>
-                      <input
-                        className="field-input"
-                        type="email"
-                        placeholder="you@company.com"
-                        required
-                      />
-                    </div>
-                    <button type="submit" className="submit-btn submit-pom">
-                      Start OM Full
-                    </button>
-                  </form>
-                  <div className="form-note">
-                    <div className="note-dot nd-open"></div>
-                    $50/mo · cancel anytime
-                  </div>
-                </div>
-              ) : (
-                <div
-                  style={{
-                    padding: '32px 24px',
-                    textAlign: 'center' as const,
-                    background: 'var(--surface)',
-                  }}
-                >
-                  <div className="ss-icon ss-icon-pom">✓</div>
-                  <div className="ss-title">You're in</div>
-                  <p className="ss-desc">
-                    Welcome to OM Full. Check your inbox for next steps.
-                  </p>
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
