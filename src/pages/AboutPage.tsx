@@ -124,7 +124,7 @@ export default function AboutPage() {
           <div className="team-card">
             <div className="team-avatar">CW</div>
             <div className="team-name">Chloe Warnock</div>
-            <div className="team-role">Founder &amp; CEO</div>
+            <div className="team-role">Co-Founder &amp; Head of GTM</div>
             <p className="team-bio">
               Building OM because the GTM intelligence problem is real and the
               existing tools are either too big, too manual, or too focused on the
@@ -144,7 +144,7 @@ export default function AboutPage() {
           <div className="team-card">
             <div className="team-avatar">CK</div>
             <div className="team-name">Chris Kirilov</div>
-            <div className="team-role">Product</div>
+            <div className="team-role">Co-Founder &amp; CEO</div>
             <p className="team-bio">
               Building the product that opportunity management runs on and the
               company intelligence layer that scales from it.
