@@ -63,11 +63,11 @@ export default function BlogPage() {
           </div>
           <div className="pf-bottom">
             <div className="pf-meta">
-              Chloe Warnock
-              <span className="pf-sep">&middot;</span>
-              Mar 2026
-              <span className="pf-sep">&middot;</span>
-              5 min read
+              <span>Chloe Warnock</span>
+              <div className="pf-sep"></div>
+              <span>Mar 2026</span>
+              <div className="pf-sep"></div>
+              <span>5 min read</span>
             </div>
             <div className="pf-read">Read &rarr;</div>
           </div>
@@ -76,55 +76,51 @@ export default function BlogPage() {
         {/* POST GRID */}
         <div className="post-grid reveal">
           <a className="post-card" href="#">
-            <div className="post-tag tag-om">OM &middot; Personal</div>
-            <div className="post-title">
-              The 5% rule: why most of your opportunities aren&rsquo;t actually
-              opportunities
+            <div className="pc-top">
+              <div className="pc-tag tag-om">OM &middot; Personal</div>
+              <div className="pc-title">The 5% rule: why most of your opportunities aren&rsquo;t actually opportunities</div>
+              <p className="pc-desc">At any given moment, only 5% of the people in your pipeline are ready to move. Here&rsquo;s how to tell which ones.</p>
             </div>
-            <p className="post-desc">
-              If you&rsquo;re treating every lead the same, you&rsquo;re
-              wasting most of your time. Here&rsquo;s how to focus on what
-              matters.
-            </p>
-            <div className="post-meta">Mar 2026 &middot; 4 min</div>
+            <div className="pc-bottom">
+              <div className="pc-meta">Mar 2026 &middot; 4 min</div>
+              <div className="pc-arrow">&rarr;</div>
+            </div>
           </a>
 
           <a className="post-card" href="#">
-            <div className="post-tag tag-gtm">GTM</div>
-            <div className="post-title">
-              What founder-led sales actually looks like at $1M ARR
+            <div className="pc-top">
+              <div className="pc-tag tag-gtm">GTM</div>
+              <div className="pc-title">What founder-led sales actually looks like at $1M ARR</div>
+              <p className="pc-desc">The chaos isn&rsquo;t a sign you&rsquo;re doing it wrong. It&rsquo;s a signal you&rsquo;ve hit the inflection point where clarity becomes the bottleneck.</p>
             </div>
-            <p className="post-desc">
-              Spoiler: it&rsquo;s not about hiring a VP of Sales. It&rsquo;s
-              about building a system before you build a team.
-            </p>
-            <div className="post-meta">Feb 2026 &middot; 6 min</div>
+            <div className="pc-bottom">
+              <div className="pc-meta">Feb 2026 &middot; 6 min</div>
+              <div className="pc-arrow">&rarr;</div>
+            </div>
           </a>
 
           <a className="post-card" href="#">
-            <div className="post-tag tag-om">OM &middot; Company</div>
-            <div className="post-title">
-              Monday morning pipeline anxiety is a data problem, not a
-              motivation problem
+            <div className="pc-top">
+              <div className="pc-tag tag-om">OM &middot; Company</div>
+              <div className="pc-title">Monday morning pipeline anxiety is a data problem, not a motivation problem</div>
+              <p className="pc-desc">The dread you feel looking at your CRM on Monday morning isn&rsquo;t about mindset. It&rsquo;s because your data isn&rsquo;t honest with you.</p>
             </div>
-            <p className="post-desc">
-              That sinking feeling when you open your CRM? It&rsquo;s not
-              burnout. It&rsquo;s uncertainty. Here&rsquo;s the fix.
-            </p>
-            <div className="post-meta">Feb 2026 &middot; 3 min</div>
+            <div className="pc-bottom">
+              <div className="pc-meta">Feb 2026 &middot; 3 min</div>
+              <div className="pc-arrow">&rarr;</div>
+            </div>
           </a>
 
           <a className="post-card" href="#">
-            <div className="post-tag tag-om">OM &middot; Personal</div>
-            <div className="post-title">
-              Why job applications and sales deals are the same problem
+            <div className="pc-top">
+              <div className="pc-tag tag-om">OM &middot; Personal</div>
+              <div className="pc-title">Why job applications and sales deals are the same problem</div>
+              <p className="pc-desc">A job application is an opportunity. A sales deal is an opportunity. The management system should be the same.</p>
             </div>
-            <p className="post-desc">
-              Both are pipelines. Both need tracking. Both fail when you
-              &ldquo;wing it.&rdquo; A look at personal opportunity
-              management.
-            </p>
-            <div className="post-meta">Jan 2026 &middot; 4 min</div>
+            <div className="pc-bottom">
+              <div className="pc-meta">Jan 2026 &middot; 4 min</div>
+              <div className="pc-arrow">&rarr;</div>
+            </div>
           </a>
         </div>
 
