@@ -116,7 +116,7 @@ export default function BlogPage() {
                 </div>
               </Link>
 
-              <a className="post-card reveal-child delay-2" href="#">
+              <Link className="post-card reveal-child delay-2" to="/blog/founder-led-sales-1m-arr">
                 <div className="pc-top">
                   <div className="pc-tag tag-gtm">GTM</div>
                   <div className="pc-title">What founder-led sales actually looks like at $1M ARR</div>
@@ -126,9 +126,9 @@ export default function BlogPage() {
                   <div className="pc-meta">Feb 2026 &middot; 6 min</div>
                   <div className="pc-arrow">&rarr;</div>
                 </div>
-              </a>
+              </Link>
 
-              <a className="post-card reveal-child delay-3" href="#">
+              <Link className="post-card reveal-child delay-3" to="/blog/monday-pipeline-anxiety">
                 <div className="pc-top">
                   <div className="pc-tag tag-om">OM &middot; Company</div>
                   <div className="pc-title">Monday morning pipeline anxiety is a data problem, not a motivation problem</div>
@@ -138,9 +138,9 @@ export default function BlogPage() {
                   <div className="pc-meta">Feb 2026 &middot; 3 min</div>
                   <div className="pc-arrow">&rarr;</div>
                 </div>
-              </a>
+              </Link>
 
-              <a className="post-card reveal-child delay-4" href="#">
+              <Link className="post-card reveal-child delay-4" to="/blog/jobs-and-deals-same-problem">
                 <div className="pc-top">
                   <div className="pc-tag tag-om">POM &middot; Personal</div>
                   <div className="pc-title">Why job applications and sales deals are the same problem</div>
@@ -150,7 +150,7 @@ export default function BlogPage() {
                   <div className="pc-meta">Jan 2026 &middot; 4 min</div>
                   <div className="pc-arrow">&rarr;</div>
                 </div>
-              </a>
+              </Link>
             </div>
           </>
         )}
@@ -221,17 +221,6 @@ export default function BlogPage() {
                   <div className="omw-event-title">AI Admin x Cafe</div>
                   <div className="omw-event-meta">San Francisco &middot; Workato speaking event</div>
                   <div className="omw-event-desc">Chloe presenting on dogfooding OM to automate GTM.</div>
-                </div>
-              </div>
-              <div className="omw-event-card reveal-child delay-2">
-                <div className="omw-event-date">
-                  <div className="omw-event-month">APR</div>
-                  <div className="omw-event-day">9</div>
-                </div>
-                <div className="omw-event-info">
-                  <div className="omw-event-title">Design Partner Call: Deuce Thevenow</div>
-                  <div className="omw-event-meta">Virtual &middot; recess.is</div>
-                  <div className="omw-event-desc">Pipeline clarity session with an early design partner.</div>
                 </div>
               </div>
             </div>

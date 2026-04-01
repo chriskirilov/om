@@ -8,6 +8,9 @@ import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostCrmLying from './pages/BlogPostCrmLying';
 import BlogPostFivePercent from './pages/BlogPostFivePercent';
+import BlogPostFounderLedSales from './pages/BlogPostFounderLedSales';
+import BlogPostMondayAnxiety from './pages/BlogPostMondayAnxiety';
+import BlogPostJobsAndDeals from './pages/BlogPostJobsAndDeals';
 import { Analytics } from '@vercel/analytics/react';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/crm-lying-to-you" element={<BlogPostCrmLying />} />
           <Route path="/blog/five-percent-rule" element={<BlogPostFivePercent />} />
+          <Route path="/blog/founder-led-sales-1m-arr" element={<BlogPostFounderLedSales />} />
+          <Route path="/blog/monday-pipeline-anxiety" element={<BlogPostMondayAnxiety />} />
+          <Route path="/blog/jobs-and-deals-same-problem" element={<BlogPostJobsAndDeals />} />
         </Routes>
         <Footer />
         <Analytics />
