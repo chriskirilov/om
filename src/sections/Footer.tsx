@@ -36,24 +36,18 @@ export default function Footer() {
         </div>
         <div>
           <div className="footer-col-title">Product</div>
+          <Link to="/pom" className="footer-link">POM · Personal</Link>
+          <Link to="/om" className="footer-link">OM · Company</Link>
           {isHome ? (
-            <>
-              <a href="#how-it-works" className="footer-link">How it works</a>
-              <a href="#waitlist" className="footer-link">Pricing</a>
-              <a href="#waitlist" className="footer-link">Waitlist</a>
-            </>
+            <a href="#waitlist" className="footer-link">Waitlist</a>
           ) : (
-            <>
-              <Link to="/#how-it-works" className="footer-link">How it works</Link>
-              <Link to="/#waitlist" className="footer-link">Pricing</Link>
-              <Link to="/#waitlist" className="footer-link">Waitlist</Link>
-            </>
+            <Link to="/#waitlist" className="footer-link">Waitlist</Link>
           )}
         </div>
         <div>
           <div className="footer-col-title">Company</div>
           <Link to="/about" className="footer-link">About</Link>
-          <Link to="/blog" className="footer-link">Blog</Link>
+          <Link to="/blog" className="footer-link">OM World</Link>
           <a href="https://www.linkedin.com/company/pipelineom/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
         </div>
       </div>

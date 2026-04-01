@@ -521,6 +521,8 @@ footer a.f-link:hover{color:var(--ink)}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:40px}
 .team-card{background:var(--white);padding:28px 24px}
 .team-avatar{width:48px;height:48px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--mid);margin-bottom:16px;letter-spacing:-0.02em}
+.team-avatar-img{width:64px;height:64px;border-radius:14px;object-fit:cover;filter:grayscale(100%);border:1px solid var(--border);margin-bottom:16px;transition:filter 0.3s}
+.team-card:hover .team-avatar-img{filter:grayscale(0%)}
 .team-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px}
 .team-role{font-size:12px;font-weight:500;color:var(--faint);margin-bottom:12px}
 .team-bio{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:16px}
@@ -579,6 +581,52 @@ footer a.f-link:hover{color:var(--ink)}
 .nl-input::placeholder{color:var(--faint)}
 .nl-btn{height:40px;padding:0 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.15s;white-space:nowrap}
 .nl-btn:hover{background:#1A1A24}
+
+/* ── OM WORLD ── */
+.omw-filters{display:flex;gap:6px;flex-wrap:wrap}
+.omw-filter{height:32px;padding:0 14px;border-radius:8px;border:1px solid var(--border);background:var(--white);font-family:'Geist',sans-serif;font-size:13px;font-weight:500;color:var(--mid);cursor:pointer;transition:all 0.15s}
+.omw-filter:hover{border-color:var(--ink);color:var(--ink)}
+.omw-filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.omw-placeholder-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 24px;display:flex;flex-direction:column;gap:8px}
+.omw-ph-icon{font-size:24px;margin-bottom:4px}
+.omw-ph-title{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.omw-ph-desc{font-size:13px;color:var(--mid);line-height:1.55;flex:1}
+.omw-ph-badge{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:0.04em;background:var(--om-lt);color:var(--om);border:1px solid var(--om-bd);width:fit-content;margin-top:8px}
+
+.omw-podcast-section{margin-bottom:8px}
+.omw-podcast-hero{display:flex;gap:32px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px;flex-wrap:wrap}
+.omw-podcast-art{width:140px;height:140px;background:var(--white);border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.omw-podcast-info{flex:1;min-width:240px}
+
+.omw-event-card{display:flex;gap:20px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;transition:box-shadow 0.15s,transform 0.15s}
+.omw-event-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06);transform:translateY(-1px)}
+.omw-event-date{width:52px;height:56px;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.omw-event-month{font-size:10px;font-weight:700;color:var(--om);letter-spacing:0.08em;line-height:1}
+.omw-event-day{font-size:20px;font-weight:700;color:var(--ink);line-height:1.2}
+.omw-event-info{flex:1}
+.omw-event-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.omw-event-meta{font-size:12px;color:var(--faint);margin-bottom:6px}
+.omw-event-desc{font-size:13px;color:var(--mid);line-height:1.5}
+
+.omw-socials{display:flex;gap:12px;flex-wrap:wrap}
+.omw-social-card{display:flex;align-items:center;gap:14px;padding:20px 24px;background:var(--white);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:box-shadow 0.15s,transform 0.15s;flex:1;min-width:240px}
+.omw-social-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06);transform:translateY(-1px)}
+.omw-social-arrow{margin-left:auto;font-size:14px;color:var(--faint)}
+
+/* ── BLOG ARTICLE ── */
+.blog-article{padding:72px 40px 48px;max-width:100%}
+.blog-article-inner{max-width:680px;margin:0 auto}
+.blog-article p{font-size:16px;font-weight:300;color:var(--mid);line-height:1.85;margin-bottom:20px}
+.blog-article .blog-lede{font-size:18px;font-weight:400;color:var(--ink-2);line-height:1.8;margin-bottom:28px}
+.blog-article h2{font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.25;margin-top:48px;margin-bottom:16px}
+.blog-article h3{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.3;margin-top:36px;margin-bottom:12px}
+.blog-article em{font-style:italic;color:var(--ink-2)}
+.blog-article strong{font-weight:600;color:var(--ink-2)}
+.blog-article ul,.blog-article ol{margin:16px 0 24px 20px;display:flex;flex-direction:column;gap:10px}
+.blog-article li{font-size:15px;font-weight:300;color:var(--mid);line-height:1.75;padding-left:4px}
+.blog-article li strong{color:var(--ink)}
+.blog-divider{width:48px;height:1px;background:var(--border);margin:48px 0}
 
 /* ── HERO ENTRANCE ── */
 .hero-inner > * {

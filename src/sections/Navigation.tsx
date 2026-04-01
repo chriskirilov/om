@@ -29,8 +29,10 @@ export default function Navigation() {
 
       {/* Desktop nav */}
       <div className="nav-right nav-desktop">
+        <Link to="/pom" className={`nav-link${location.pathname === '/pom' ? ' active' : ''}`}>POM</Link>
+        <Link to="/om" className={`nav-link${location.pathname === '/om' ? ' active' : ''}`}>OM</Link>
         <Link to="/about" className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}>About</Link>
-        <Link to="/blog" className={`nav-link${location.pathname === '/blog' ? ' active' : ''}`}>Blog</Link>
+        <Link to="/blog" className={`nav-link${location.pathname === '/blog' ? ' active' : ''}`}>OM World</Link>
         {isHome ? (
           <a href="#waitlist" className="nav-btn btn-white">Join waitlist</a>
         ) : (
@@ -47,8 +49,10 @@ export default function Navigation() {
       {/* Mobile panel */}
       {mobileOpen && (
         <div className="nav-mobile-panel">
+          <Link to="/pom" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>POM</Link>
+          <Link to="/om" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>OM</Link>
           <Link to="/about" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>About</Link>
-          <Link to="/blog" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>Blog</Link>
+          <Link to="/blog" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>OM World</Link>
           {isHome ? (
             <a href="#waitlist" className="nav-btn btn-white" style={{marginTop:8,textAlign:'center',justifyContent:'center'}} onClick={() => setMobileOpen(false)}>Join waitlist</a>
           ) : (

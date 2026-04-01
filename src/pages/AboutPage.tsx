@@ -57,8 +57,10 @@ export default function AboutPage() {
           track clearly, and the tools you're using aren't honest about which ones matter.
         </p>
         <p className="body-text">
-          OM is built on a single belief: the intelligence layer has to come before the
-          action layer. Know what's real first. Then act.
+          That's why we built two products on one engine. POM manages personal opportunities — jobs, deals, gigs. OM manages company pipeline — the deals your team is working. Different data models, different trust contexts, same clarity engine underneath.
+        </p>
+        <p className="body-text">
+          The intelligence layer has to come before the action layer. Know what's real first. Then act.
         </p>
         <div className="thesis-block">
           <div className="thesis-quote">
@@ -96,9 +98,9 @@ export default function AboutPage() {
             <div className="value-num">03</div>
             <div className="value-title">The person comes before the company</div>
             <div className="value-desc">
-              The best company intelligence starts with people who already know how
-              to manage their own opportunities. You graduate to the company layer
-              — you don't start there.
+              POM catches people early, when they're individuals. OM catches them
+              when they've grown into founders with company-level pipeline chaos.
+              You graduate from POM to OM — you don't start at the company layer.
             </div>
           </div>
           <div className="value-cell reveal-child delay-4">
@@ -123,7 +125,7 @@ export default function AboutPage() {
         </p>
         <div className="team-grid">
           <div className="team-card reveal-child delay-1">
-            <div className="team-avatar">CW</div>
+            <img className="team-avatar-img" src="/team-chloe.jpg" alt="Chloe Warnock" />
             <div className="team-name">Chloe Warnock</div>
             <div className="team-role">Co-Founder &amp; Head of GTM</div>
             <p className="team-bio">
@@ -143,7 +145,7 @@ export default function AboutPage() {
           </div>
 
           <div className="team-card reveal-child delay-2">
-            <div className="team-avatar">CK</div>
+            <img className="team-avatar-img" src="/team-chris.jpg" alt="Chris Kirilov" />
             <div className="team-name">Chris Kirilov</div>
             <div className="team-role">Co-Founder &amp; CEO</div>
             <p className="team-bio">
@@ -162,7 +164,7 @@ export default function AboutPage() {
           </div>
 
           <div className="team-card reveal-child delay-3">
-            <div className="team-avatar">PC</div>
+            <img className="team-avatar-img" src="/team-paul.jpg" alt="Paul Cox" />
             <div className="team-name">Paul Cox</div>
             <div className="team-role">GTM &amp; Partnerships</div>
             <p className="team-bio">
