@@ -1,4 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+function TeamAvatar({ src, initials }: { src: string; initials: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return <div className="team-avatar">{initials}</div>;
+  }
+  return (
+    <img
+      className="team-avatar-img"
+      src={src}
+      alt={initials}
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 const LinkedInIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -125,7 +140,7 @@ export default function AboutPage() {
         </p>
         <div className="team-grid">
           <div className="team-card reveal-child delay-1">
-            <img className="team-avatar-img" src="/team-chloe.jpg" alt="Chloe Warnock" />
+            <TeamAvatar src="/team-chloe.jpg" initials="CW" />
             <div className="team-name">Chloe Warnock</div>
             <div className="team-role">Co-Founder &amp; Head of GTM</div>
             <p className="team-bio">
@@ -145,7 +160,7 @@ export default function AboutPage() {
           </div>
 
           <div className="team-card reveal-child delay-2">
-            <img className="team-avatar-img" src="/team-chris.jpg" alt="Chris Kirilov" />
+            <TeamAvatar src="/team-chris.jpg" initials="CK" />
             <div className="team-name">Chris Kirilov</div>
             <div className="team-role">Co-Founder &amp; CEO</div>
             <p className="team-bio">
@@ -164,7 +179,7 @@ export default function AboutPage() {
           </div>
 
           <div className="team-card reveal-child delay-3">
-            <img className="team-avatar-img" src="/team-paul.jpg" alt="Paul Cox" />
+            <TeamAvatar src="/team-paul.jpg" initials="PC" />
             <div className="team-name">Paul Cox</div>
             <div className="team-role">GTM &amp; Partnerships</div>
             <p className="team-bio">
