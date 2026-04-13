@@ -1,14 +1,22 @@
-const WEB_APP_URL = process.env.GOOGLE_SHEETS_WEB_APP_URL;
+const OM_API_URL = process.env.OM_API_URL;
+const OM_API_KEY = process.env.OM_API_KEY;
 
-export default async function handler(req: { method?: string; body?: unknown }, res: { setHeader: (k: string, v: string) => void; status: (n: number) => { json: (o: object) => void } }) {
+export default async function handler(
+  req: { method?: string; body?: unknown },
+  res: {
+    setHeader: (k: string, v: string) => void;
+    status: (n: number) => { json: (o: object) => void };
+  },
+) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (!WEB_APP_URL) {
+  if (!OM_API_URL || !OM_API_KEY) {
     return res.status(500).json({
-      error: 'Form is not configured. Set GOOGLE_SHEETS_WEB_APP_URL in Vercel environment variables.',
+      error:
+        'Form is not configured. Set OM_API_URL and OM_API_KEY in Vercel environment variables.',
     });
   }
 
@@ -18,44 +26,39 @@ export default async function handler(req: { method?: string; body?: unknown }, 
       return res.status(400).json({ error: 'Invalid request body.' });
     }
 
-    // Send as form-encoded so Apps Script populates e.parameter (e.postData can be missing for JSON)
-    const sheetRes = await fetch(WEB_APP_URL, {
+    const { name, email, company, source } = body as Record<string, string>;
+
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required.' });
+    }
+
+    const apiRes = await fetch(`${OM_API_URL.replace(/\/+$/, '')}/api/waitlist`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ data: JSON.stringify(body) }).toString(),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OM_API_KEY}`,
+      },
+      body: JSON.stringify({ name, email, company, source }),
       signal: AbortSignal.timeout(15000),
     });
 
-    const text = await sheetRes.text();
-    let data: { ok?: boolean; error?: string };
-    try {
-      data = JSON.parse(text) as { ok?: boolean; error?: string };
-    } catch {
-      data = {};
-    }
-
-    // Apps Script returns 200 even when it returns { error: "..." }, so check body too
-    if (!sheetRes.ok || data.error) {
-      const bodyPreview = text.slice(0, 300).replace(/\s+/g, ' ').trim();
-      const detail = data.error
-        ? `Script error: ${data.error}`
-        : `Google returned ${sheetRes.status}. Body: ${bodyPreview || '(empty)'}`;
-      console.error('Google Apps Script error:', sheetRes.status, text);
+    if (!apiRes.ok) {
+      const text = await apiRes.text();
+      console.error('OM API error:', apiRes.status, text);
       return res.status(502).json({
         error: 'Failed to save submission. Please try again or email us directly.',
-        detail,
       });
     }
 
     return res.status(200).json({ ok: true });
   } catch (e) {
-    const err = e as Error & { code?: string; name?: string };
-    const isTimeout = err.name === 'AbortError' || err.code === 'ETIMEDOUT';
+    const err = e as Error & { name?: string };
+    const isTimeout = err.name === 'AbortError';
     console.error('submit-design-partner error:', e);
     return res.status(500).json({
       error: 'Something went wrong. Please try again or email us directly.',
       detail: isTimeout
-        ? 'Request to Google timed out. Check that GOOGLE_SHEETS_WEB_APP_URL is correct and the script is deployed.'
+        ? 'Request to OM API timed out.'
         : err.message?.slice(0, 200),
     });
   }

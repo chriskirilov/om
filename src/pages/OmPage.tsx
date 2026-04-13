@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function OmPage() {
   const [waitlistSuccess, setWaitlistSuccess] = useState(false);
+  const [waitlistLoading, setWaitlistLoading] = useState(false);
+  const [waitlistError, setWaitlistError] = useState('');
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -20,9 +22,27 @@ export default function OmPage() {
     return () => obs.disconnect();
   }, []);
 
-  function handleWaitlist(e: FormEvent) {
+  async function handleWaitlist(e: FormEvent) {
     e.preventDefault();
-    setWaitlistSuccess(true);
+    setWaitlistError('');
+    setWaitlistLoading(true);
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const company = (form.elements.namedItem('company') as HTMLInputElement)?.value || '';
+    try {
+      const res = await fetch('/api/submit-design-partner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, company, source: 'om-page' }),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setWaitlistSuccess(true);
+    } catch {
+      setWaitlistError('Something went wrong — please try again.');
+    } finally {
+      setWaitlistLoading(false);
+    }
   }
 
   return (
@@ -209,17 +229,20 @@ export default function OmPage() {
             {!waitlistSuccess ? (
               <form onSubmit={handleWaitlist}>
                 <div className="field">
-                  <input className="field-input" type="text" placeholder="Your name" required />
+                  <input className="field-input" name="name" type="text" placeholder="Your name" required />
                 </div>
                 <div className="field">
-                  <input className="field-input" type="email" placeholder="you@company.com" required />
+                  <input className="field-input" name="email" type="email" placeholder="you@company.com" required />
                 </div>
                 <div className="field">
-                  <input className="field-input" type="text" placeholder="Company name" />
+                  <input className="field-input" name="company" type="text" placeholder="Company name" />
                 </div>
-                <button type="submit" className="submit-btn submit-pom" style={{ width: '100%' }}>
-                  Apply for design partner access
+                <button type="submit" className="submit-btn submit-pom" style={{ width: '100%' }} disabled={waitlistLoading}>
+                  {waitlistLoading ? 'Submitting…' : 'Apply for design partner access'}
                 </button>
+                {waitlistError && (
+                  <div style={{ color: '#e55', fontSize: 13, marginTop: 12 }}>{waitlistError}</div>
+                )}
                 <div className="form-note" style={{ justifyContent: 'center' }}>
                   <div className="note-dot nd-open" />
                   We'll reach out personally to discuss your pipeline

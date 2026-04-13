@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 export default function PomPage() {
   const [waitlistSuccess, setWaitlistSuccess] = useState(false);
+  const [waitlistLoading, setWaitlistLoading] = useState(false);
+  const [waitlistError, setWaitlistError] = useState('');
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -20,9 +22,26 @@ export default function PomPage() {
     return () => obs.disconnect();
   }, []);
 
-  function handleWaitlist(e: FormEvent) {
+  async function handleWaitlist(e: FormEvent) {
     e.preventDefault();
-    setWaitlistSuccess(true);
+    setWaitlistError('');
+    setWaitlistLoading(true);
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    try {
+      const res = await fetch('/api/submit-design-partner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, source: 'pom-page' }),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      setWaitlistSuccess(true);
+    } catch {
+      setWaitlistError('Something went wrong — please try again.');
+    } finally {
+      setWaitlistLoading(false);
+    }
   }
 
   return (
@@ -697,14 +716,17 @@ export default function PomPage() {
             {!waitlistSuccess ? (
               <form onSubmit={handleWaitlist} style={{ maxWidth: 400, margin: '0 auto' }}>
                 <div className="field">
-                  <input className="field-input" type="text" placeholder="Your name" required />
+                  <input className="field-input" name="name" type="text" placeholder="Your name" required />
                 </div>
                 <div className="field">
-                  <input className="field-input" type="email" placeholder="you@company.com" required />
+                  <input className="field-input" name="email" type="email" placeholder="you@company.com" required />
                 </div>
-                <button type="submit" className="submit-btn submit-pom" style={{ width: '100%' }}>
-                  Join the waitlist
+                <button type="submit" className="submit-btn submit-pom" style={{ width: '100%' }} disabled={waitlistLoading}>
+                  {waitlistLoading ? 'Submitting…' : 'Join the waitlist'}
                 </button>
+                {waitlistError && (
+                  <div style={{ color: '#e55', fontSize: 13, marginTop: 12 }}>{waitlistError}</div>
+                )}
                 <div className="form-note" style={{ justifyContent: 'center' }}>
                   <div className="note-dot nd-open" />
                   Free &middot; no credit card &middot; we'll reach out personally
